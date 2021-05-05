@@ -1,1 +1,1 @@
-# uid-web-components
+# bonita-ui-designer-web-components
