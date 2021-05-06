@@ -1,4 +1,4 @@
 # bonita-ui-designer-web-components
 
-This repository contains a set of web components, used as the Bonita UI Designer widgets.
-
+This single repository contains all the web components of the Bonita UI Designer widgets.  
+Each web component is packaged separately in a npm package.
