@@ -12,6 +12,18 @@ You need to have **lerna** and **nodejs > 10** to build this repository
 Run `npm install -g lerna` to install lerna globally
     
 
+## Duplicate a web component
+
+If you want to duplicate a web component to create a similar one, you can use the custom widget builder (cwb) CLI.  
+First install the CLI:
+```bash
+$ npm install -g @bonitasoft/custom-widget-builder
+```
+Then run the cwb command, for instance to duplicate the `pb-input` web component to the new `my-input`:
+```bash
+$ cwb copy-wc --srcDir pb-input --destDir my-input
+```
+
 ## Build all packages
 
 You need to run `npm run init` first when you cloning this repository.
