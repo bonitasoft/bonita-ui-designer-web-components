@@ -11,16 +11,16 @@ import * as i18n_pt from "./i18n/pt-BR.json";
 
 // Registers i18n loader
 registerTranslateConfig({
-  loader: (lang) => Promise.resolve(PbText.getCatalog(lang))
+  loader: (lang) => Promise.resolve(UidText.getCatalog(lang))
 });
 
-@customElement('pb-text')
-export class PbText extends LitElement {
+@customElement('uid-text')
+export class UidText extends LitElement {
 
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: string = "en";
 
-  // Common properties below are handled by the div above pb-text:
+  // Common properties below are handled by the div above uid-text:
 
   // @property({ attribute: 'width', type: String, reflect: true })
   // private width: string = "12";

@@ -1,6 +1,6 @@
-# `pb-text`
+# `uid-text`
 
-![npmVersion](https://img.shields.io/npm/v/@bonitasoft/pb-text?color=blue&style=plastic)
+![npmVersion](https://img.shields.io/npm/v/uid-text?color=blue&style=plastic)
 
 Simple text web component
 
@@ -25,8 +25,8 @@ Note: If `allow-html` is set, this is unsafe to use the `text` attribute with an
 
 Run:
 
-    npm install @bonitasoft/pb-text
+    npm install uid-text
 
-Then import `node_modules/@bonitasoft/pb-text/lib/pb-text.es5.min.js`
+Then import `node_modules/uid-text/lib/uid-text.es5.min.js`
 
-And you can use new html tag `<pb-text text="My text"></pb-text>`
+And you can use new html tag `<uid-text text="My text"></uid-text>`
