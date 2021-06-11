@@ -1,137 +1,101 @@
 {
   "id": "uidInput",
-  "name": "UidInput",
+  "name": "Input",
   "type": "widget",
   "template": "@uidInput.tpl.html",
-  "description": "Field where the user can enter information",
+  "description": "Input field, optionally with a label, where the user can enter information",
   "order": "1",
-  "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 20'><g><path fill='#fff' d='M1,19V1h48v18H1z M0,0v20h50V0H0z M6,18v-1H5v1H6z M8,17H7v1h1V17z M7,2v1h1V2H7z M5,3h1V2H5V3z M6,3v14h1 V3H6z '/></g></svg>",
+  "custom": true,
+  "legacy": false,
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30\" height=\"30\" viewBox=\"0 0 30 30\"><path fill=\"#5b5b5b\" d=\"M9 9L9 3L12 3ZM15 3L21 3L21 6ZM21 21L21 27L18 27ZM15 27L9 27L9 24ZM3 15L3 9L6 9ZM21 9L27 9L27 12ZM27 15L27 21L24 21ZM9 21L3 21L3 18Z\"/><path fill=\"#c1c6ea\" d=\"M4 6a2,2 0 1,1 4,0a2,2 0 1,1 -4,0M22 6a2,2 0 1,1 4,0a2,2 0 1,1 -4,0M22 24a2,2 0 1,1 4,0a2,2 0 1,1 -4,0M4 24a2,2 0 1,1 4,0a2,2 0 1,1 -4,0\"/><path fill=\"#848dd6\" d=\"M9 9L15 9L15 10L12.5 15L9 15ZM21 9L21 15L20 15L15 12.5L15 9ZM21 21L15 21L15 20L17.5 15L21 15ZM9 21L9 15L10 15L15 17.5L15 21Z\"/></svg>",
   "properties": [
     {
-      "label": "Required",
+      "name": "id",
+      "type": "text",
+      "label": "Id",
+      "defaultValue": ""
+    },
+    {
       "name": "required",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
       "type": "boolean",
+      "label": "Required",
       "defaultValue": false
     },
     {
-      "label": "Value min length",
       "name": "minLength",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
       "type": "integer",
-      "defaultValue": "",
-      "constraints": {
-        "min": "0"
-      }
+      "label": "Min length"
     },
     {
-      "label": "Value max length",
       "name": "maxLength",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
       "type": "integer",
-      "defaultValue": "",
-      "constraints": {
-        "min": "1"
-      }
+      "label": "Max length"
     },
     {
-      "label": "Read-only",
       "name": "readOnly",
       "type": "boolean",
+      "label": "Read only",
       "defaultValue": false
     },
     {
-      "label": "Label hidden",
       "name": "labelHidden",
       "type": "boolean",
-      "bond": "constant",
+      "label": "Label hidden",
       "defaultValue": false
     },
     {
-      "label": "Label",
       "name": "label",
       "type": "text",
-      "defaultValue": "Default label",
-      "showFor": "properties.labelHidden.value === false",
-      "bond": "interpolation"
+      "label": "Label",
+      "defaultValue": ""
     },
     {
-      "label": "Label position",
       "name": "labelPosition",
-      "type": "choice",
-      "choiceValues": [
-        "left",
-        "top"
-      ],
-      "defaultValue": "top",
-      "bond": "constant",
-      "showFor": "properties.labelHidden.value === false"
+      "type": "text",
+      "label": "Label position",
+      "help": "Position of the label",
+      "defaultValue": "top"
     },
     {
-      "label": "Label width",
       "name": "labelWidth",
       "type": "integer",
-      "defaultValue": 4,
-      "showFor": "properties.labelHidden.value === false",
-      "bond": "constant",
-      "constraints": {
-        "min": "1",
-        "max": "12"
-      }
+      "label": "Label width",
+      "defaultValue": 4
     },
     {
-      "label": "Placeholder",
       "name": "placeholder",
-      "help": "Short hint that describes the expected value",
       "type": "text",
-      "bond": "interpolation"
+      "label": "Placeholder",
+      "defaultValue": ""
     },
     {
-      "label": "Value",
       "name": "value",
-      "help": "Read-write binding, initialized or updated by users' input (bi-directional bond)",
-      "caption": "Any variable: <i>myData</i> or <i>myData.attribute</i>",
       "type": "text",
-      "bond": "variable"
+      "label": "Value",
+      "defaultValue": ""
     },
     {
-      "label": "Type",
       "name": "type",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
-      "type": "choice",
-      "choiceValues": [
-        "text",
-        "number",
-        "email",
-        "password"
-      ],
-      "bond": "constant",
+      "type": "text",
+      "label": "Type",
       "defaultValue": "text"
     },
     {
-      "label": "Min value",
       "name": "min",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
       "type": "integer",
-      "showFor": "properties.type.value === 'number'"
+      "label": "Min"
     },
     {
-      "label": "Max value",
       "name": "max",
-      "help": "In the context of a form container, use $form.$invalid as a Boolean to check form validity in a widget property",
       "type": "integer",
-      "showFor": "properties.type.value === 'number'"
+      "label": "Max"
     },
     {
-      "label": "Step",
       "name": "step",
-      "help": "Specifies the legal number intervals between values",
       "type": "integer",
-      "showFor": "properties.type.value === 'number'",
+      "label": "Step",
       "defaultValue": 1
     }
-  ]
+  ],
+  "assets": []
 }
-
-
-
