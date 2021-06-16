@@ -38,7 +38,7 @@ export class UidText extends LitElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = "";
+  label: string = "defaultLabel";
 
   @property({ attribute: 'label-position', type: String, reflect: true })
   labelPosition: string = "top";
@@ -61,7 +61,7 @@ export class UidText extends LitElement {
     super();
     listenForLangChanged(() => {
       if (this.label === "") {
-        this.label = get("defaultLabel");
+        this.label = get(this.label);
       }
     });
   }

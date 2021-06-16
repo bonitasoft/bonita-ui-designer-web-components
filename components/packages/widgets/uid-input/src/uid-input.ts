@@ -54,7 +54,7 @@ export class UidInput extends LitElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = "";
+  label: string = "defaultLabel";
 
   /**
    * Position of the label
@@ -88,7 +88,7 @@ export class UidInput extends LitElement {
     super();
     listenForLangChanged(() => {
       if (this.label === "") {
-        this.label = get("defaultLabel");
+        this.label = get(this.label);
       }
     });
   }
