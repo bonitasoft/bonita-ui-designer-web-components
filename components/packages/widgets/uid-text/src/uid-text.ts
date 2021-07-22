@@ -17,6 +17,8 @@ registerTranslateConfig({
 @customElement('uid-text')
 export class UidText extends LitElement {
 
+  static readonly LABEL_DEFAULT = "defaultLabel";
+
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: string = "en";
 
@@ -38,7 +40,7 @@ export class UidText extends LitElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = "defaultLabel";
+  label: string = UidText.LABEL_DEFAULT;
 
   @property({ attribute: 'label-position', type: String, reflect: true })
   labelPosition: string = "top";
@@ -60,7 +62,7 @@ export class UidText extends LitElement {
   constructor() {
     super();
     listenForLangChanged(() => {
-      if (this.label === "") {
+      if (this.label === UidText.LABEL_DEFAULT) {
         this.label = get(this.label);
       }
     });

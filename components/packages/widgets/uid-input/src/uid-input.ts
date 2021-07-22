@@ -19,6 +19,8 @@ registerTranslateConfig({
 @customElement('uid-input')
 export class UidInput extends LitElement {
 
+  static readonly LABEL_DEFAULT = "defaultLabel";
+
   private name = "uidInput";
 
   @property({ attribute: 'lang', type: String, reflect: true })
@@ -54,7 +56,7 @@ export class UidInput extends LitElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = "defaultLabel";
+  label: string = UidInput.LABEL_DEFAULT;
 
   /**
    * Position of the label
@@ -87,7 +89,7 @@ export class UidInput extends LitElement {
   constructor() {
     super();
     listenForLangChanged(() => {
-      if (this.label === "") {
+      if (this.label === UidInput.LABEL_DEFAULT) {
         this.label = get(this.label);
       }
     });
