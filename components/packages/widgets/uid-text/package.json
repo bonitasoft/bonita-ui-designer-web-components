@@ -1,12 +1,15 @@
 {
   "name": "@bonitasoft/uid-text",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A text component",
   "homepage": "https://github.com/bonitasoft/web-components/components/packages/widgets/uid-text#readme",
   "license": "GPLv2",
   "module": "lib/uid-text.es5.min.js",
   "files": [
-    "lib"
+    "assets",
+    "lib",
+    "src/uid-text.ts",
+    "test"
   ],
   "dependencies": {
     "bootstrap": "^4.5.3",
@@ -24,6 +27,7 @@
   },
   "scripts": {
 	"gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle lib/uid-text.es5.min.js --outputDir uid_widget",
+    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle lib/uid-text.es5.min.js --outputDir assets",
     "start": "npm install && rollup -c -w --environment devMode:true",
     "lint": "prettier --write \"src/**/*.{js,ts,tsx}\"",
     "bundle": "tsc && rollup -c",

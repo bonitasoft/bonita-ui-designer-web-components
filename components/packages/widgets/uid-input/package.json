@@ -1,12 +1,15 @@
 {
   "name": "@bonitasoft/uid-input",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An input with label",
   "homepage": "https://github.com/bonitasoft/web-components/components/packages/widgets/uid-input#readme",
   "license": "GPLv2",
   "module": "lib/uid-input.es5.min.js",
   "files": [
-    "lib"
+    "assets",
+    "lib",
+    "src/uid-input.ts",
+    "test"
   ],
   "dependencies": {
     "bootstrap": "^4.5.3",
@@ -24,11 +27,12 @@
   },
   "scripts": {
     "gen-widget": "cwb gen-widget --propertiesFile uidInput.json --webComponentBundle lib/uid-input.es5.min.js --outputDir uid_widget",
+    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInput.json --webComponentBundle lib/uid-input.es5.min.js --outputDir assets",
     "start": "npm install && rollup -c -w --environment devMode:true",
     "lint": "prettier --write \"src/**/*.{js,ts,tsx}\"",
     "bundle": "tsc && rollup -c",
     "clean": "rm -rf build lib node_modules",
     "pack": "npm pack",
-    "publish": "npm publish"
+    "publish": "npm run gen-widget-assets && npm publish"
   }
 }

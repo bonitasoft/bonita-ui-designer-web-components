@@ -11,3 +11,5 @@ build
 components/coverage
 
 **/*.log
+
+assets
