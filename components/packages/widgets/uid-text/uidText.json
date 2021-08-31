@@ -5,56 +5,75 @@
   "template": "@uidText.tpl.html",
   "order": "1",
   "custom": true,
-  "legacy": false,
-  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30\" height=\"30\" viewBox=\"0 0 30 30\"><path fill=\"#e5bae8\" d=\"M12 3L15 6L12 9L9 6ZM21 6L18 9L15 6L18 3ZM18 27L15 24L18 21L21 24ZM9 24L12 21L15 24L12 27ZM6 9L9 12L6 15L3 12ZM27 12L24 15L21 12L24 9ZM24 21L21 18L24 15L27 18ZM3 18L6 15L9 18L6 21Z\"/><path fill=\"#a138a8\" d=\"M3 3L9 3L9 9ZM27 3L27 9L21 9ZM27 27L21 27L21 21ZM3 27L3 21L9 21Z\"/><path fill=\"#cb75d1\" d=\"M11 11L14 11L14 14L11 14ZM19 11L19 14L16 14L16 11ZM19 19L16 19L16 16L19 16ZM11 19L11 16L14 16L14 19Z\"/></svg>",
-  "properties": [
+  "icon" : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 20'><g><path fill='#fff' d='M8.2,20h15v-1h-15V20z M8.2,17h31v-1h-31V17z M8.2,4h32V3h-32V4z M8.2,14h34v-1h-34V14z M8.2,7h30V6h-30V7z M8.2,1h35V0h-35V1z'/></g></svg>",
+  "properties" : [
     {
-      "name": "id",
-      "type": "text",
-      "label": "Id",
-      "defaultValue": ""
+      "label" : "Label hidden",
+      "name" : "labelHidden",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "bond" : "constant"
     },
     {
-      "name": "labelHidden",
-      "type": "boolean",
-      "label": "Label hidden",
-      "defaultValue": false
+      "label" : "Label",
+      "name" : "label",
+      "showFor" : "properties.labelHidden.value === false",
+      "type" : "text",
+      "defaultValue" : "Default label",
+      "bond" : "interpolation"
     },
     {
-      "name": "label",
-      "type": "text",
-      "label": "Label",
-      "defaultValue": ""
+      "label" : "Label position",
+      "name" : "labelPosition",
+      "showFor" : "properties.labelHidden.value === false",
+      "type" : "choice",
+      "defaultValue" : "top",
+      "choiceValues" : [
+        "left",
+        "top"
+      ],
+      "bond" : "constant"
     },
     {
-      "name": "labelPosition",
-      "type": "text",
-      "label": "Label position",
-      "defaultValue": "top"
+      "label" : "Label width",
+      "name" : "labelWidth",
+      "showFor" : "properties.labelHidden.value === false",
+      "type" : "integer",
+      "defaultValue" : 4,
+      "bond" : "constant",
+      "constraints" : {
+        "min" : "1",
+        "max" : "12"
+      }
     },
     {
-      "name": "labelWidth",
-      "type": "integer",
-      "label": "Label width",
-      "defaultValue": 4
+      "label" : "Interpret HTML",
+      "name" : "allowHTML",
+      "help" : "If you choose 'no', HTML code will be escaped instead of being interpreted",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "bond" : "constant"
     },
     {
-      "name": "text",
-      "type": "text",
-      "label": "Text",
-      "defaultValue": ""
+      "label" : "Text",
+      "name" : "text",
+      "caption" : "Use basic html tags (if allowed), <span ng-non-bindable>{{dataVariable}}</span> to access data, and <a href=\"javascript:void(0);\" open-help=\"filters\" editor-mode=\"page\">filters</a> to format it (e.g. <span ng-non-bindable>{{dateVariable|uiDate}}</span>)",
+      "type" : "html",
+      "defaultValue" : "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,<br/>consectetur,<br/>adipisci velit...",
+      "bond" : "interpolation"
     },
     {
-      "name": "allowHTML",
-      "type": "boolean",
-      "label": "Allow html",
-      "defaultValue": false
-    },
-    {
-      "name": "alignment",
-      "type": "text",
-      "label": "Alignment",
-      "defaultValue": "left"
+      "label" : "Alignment",
+      "name" : "alignment",
+      "showFor" : "properties.labelHidden.value === true",
+      "type" : "choice",
+      "defaultValue" : "left",
+      "choiceValues" : [
+        "left",
+        "center",
+        "right"
+      ],
+      "bond" : "constant"
     }
   ],
   "assets": []
