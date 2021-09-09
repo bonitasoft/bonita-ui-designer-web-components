@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "lit-element": "^2.4.0",
+    "lit": "*",
     "lit-translate": "^1.2.1"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "url": "git+https://github.com/bonitasoft/web-components.git"
   },
   "scripts": {
-	"gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle lib/uid-text.es5.min.js --outputDir uid_widget",
+    "gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle lib/uid-text.es5.min.js --outputDir uid_widget",
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle lib/uid-text.es5.min.js --outputDir assets",
     "start": "npm install && rollup -c -w --environment devMode:true",
     "lint": "prettier --write \"src/**/*.{js,ts,tsx}\"",

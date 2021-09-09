@@ -1,4 +1,6 @@
-import {css, customElement, html, LitElement, property} from 'lit-element';
+import {css, html, LitElement} from 'lit';
+import {property, customElement} from 'lit/decorators.js';
+
 // @ts-ignore
 import bootstrapStyle from './style.scss';
 import {get, listenForLangChanged, registerTranslateConfig, use} from "lit-translate";

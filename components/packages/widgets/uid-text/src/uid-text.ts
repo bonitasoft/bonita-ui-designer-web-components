@@ -1,4 +1,6 @@
-import {css, customElement, html, LitElement, property} from 'lit-element';
+import {css, html, LitElement} from 'lit';
+import {property, customElement} from 'lit/decorators.js';
+
 import {unsafeHTML} from "lit-html/directives/unsafe-html";
 // @ts-ignore
 import bootstrapStyle from './style.scss';
