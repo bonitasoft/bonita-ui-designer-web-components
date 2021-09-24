@@ -1,6 +1,6 @@
 {
   "name": "@bonitasoft/uid-input",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "An input with label",
   "homepage": "https://github.com/bonitasoft/web-components/components/packages/widgets/uid-input#readme",
   "license": "GPLv2",
