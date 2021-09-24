@@ -166,7 +166,7 @@ export class UidInput extends LitElement {
             max="${this.max}"
             step="${this.step}"
             value="${this.value}"
-            @input=${(e: any) => this.valueChanged(e.target.value)} 
+            @input=${(e: any) => this.valueChanged(e)}
             placeholder="${this.placeholder}"
             minlength="${this.minLength}"
             maxlength="${this.maxLength}"
@@ -198,7 +198,15 @@ export class UidInput extends LitElement {
     return "form-control input-elem col";
   }
 
-  private valueChanged(value: string) {
+  private valueChanged(e: any) {
+    let inputElem = this.shadowRoot!.querySelector("input") as HTMLInputElement;
+    if (!inputElem.checkValidity()) {
+      inputElem.style.borderColor = "red";
+    } else {
+      inputElem.style.borderColor = "";
+    }
+
+    let value = e.target.value;
     this.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 
