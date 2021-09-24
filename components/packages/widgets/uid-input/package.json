@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "lit-element": "^2.4.0",
+    "lit": "*",
     "lit-translate": "^1.2.1"
   },
   "devDependencies": {
