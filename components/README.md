@@ -69,24 +69,22 @@ On your `index.html`, Right click and select `Debug index.html` entry. After thi
 
 `npm install`
 
-<!-- Comments on purpose
-   ## Publish
+## Publish a new release on npm registry
+
+Check the web components are ready:  
+`npm run bundle`  
+`npm run test`
+
+Install custom-widget-builder package globally (if not already done):
+`npm install -g @bonitasoft/custom-widget-builder`
+
+Go to each web component directory to publish, and run:  
+`npm run gen-widget-assets`  
+`npm version <new version>`  
+`npm run publish`  
+
+Then tag the repo with the new version.
+
+Note: this should be automatized when the repo rework will be done
+
    
-   To make this module available on npm registry, run:
-    
-       npm publish
-       
-   To unpublished a version run:
-   
-       npm unpublish <package>@<version>
-   
-   ## Release
-   
-   To release a new version on this component, run this following command:
-   
-       npm run release -- major|minor|patch
-       
-   During development phase, you can run 
-   
-       npm run release -- <suffix>
--->
