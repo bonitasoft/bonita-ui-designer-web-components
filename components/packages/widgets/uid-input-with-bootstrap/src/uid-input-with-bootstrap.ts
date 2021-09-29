@@ -2,6 +2,7 @@ import {css, html, LitElement} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 
 // @ts-ignore
+import bootstrapStyle from './style.scss';
 import {get, listenForLangChanged, registerTranslateConfig, use} from "lit-translate";
 import * as i18n_en from "./i18n/en.json";
 import * as i18n_es from "./i18n/es-ES.json";
@@ -11,23 +12,23 @@ import * as i18n_pt from "./i18n/pt-BR.json";
 
 // Registers i18n loader
 registerTranslateConfig({
-  loader: (lang) => Promise.resolve(UidInput.getCatalog(lang))
+  loader: (lang) => Promise.resolve(UidInputWithBootstrap.getCatalog(lang))
 });
 
 /**
  * Input field, optionally with a label, where the user can enter information
  */
-@customElement('uid-input')
-export class UidInput extends LitElement {
+@customElement('uid-input-with-bootstrap')
+export class UidInputWithBootstrap extends LitElement {
 
   static readonly LABEL_DEFAULT = "defaultLabel";
 
-  private name = "uidInput";
+  private name = "uidInputWithBootstrap";
 
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: string = "en";
 
-  // Common properties below are handled by the div above uid-input:
+  // Common properties below are handled by the div above uid-input-with-bootstrap:
 
   // @property({ attribute: 'width', type: String, reflect: true })
   // private width: string = "12";
@@ -57,7 +58,7 @@ export class UidInput extends LitElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = UidInput.LABEL_DEFAULT;
+  label: string = UidInputWithBootstrap.LABEL_DEFAULT;
 
   /**
    * Position of the label
@@ -90,7 +91,7 @@ export class UidInput extends LitElement {
   constructor() {
     super();
     listenForLangChanged(() => {
-      if (this.label === UidInput.LABEL_DEFAULT) {
+      if (this.label === UidInputWithBootstrap.LABEL_DEFAULT) {
         this.label = get(this.label);
       }
     });
@@ -154,6 +155,7 @@ export class UidInput extends LitElement {
 
   render() {
     return html`
+      <style>${bootstrapStyle}</style>
       <div id="${this.id}" class="container">
         <div class="row">
           ${this.getLabel()}

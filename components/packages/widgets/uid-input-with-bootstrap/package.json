@@ -1,17 +1,18 @@
 {
-  "name": "@bonitasoft/uid-input",
+  "name": "uid-input-with-bootstrap",
   "version": "0.1.7",
   "description": "An input with label",
-  "homepage": "https://github.com/bonitasoft/web-components/components/packages/widgets/uid-input#readme",
+  "homepage": "https://github.com/bonitasoft/web-components/components/packages/widgets/uid-input-with-bootstrap#readme",
   "license": "GPLv2",
-  "module": "lib/uid-input.es5.min.js",
+  "module": "lib/uid-input-with-bootstrap.es5.min.js",
   "files": [
     "assets",
     "lib",
-    "src/uid-input.ts",
+    "src/uid-input-with-bootstrap.ts",
     "test"
   ],
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "lit": "*",
     "lit-translate": "^1.2.1"
   },
@@ -25,8 +26,8 @@
     "url": "git+https://github.com/bonitasoft/web-components.git"
   },
   "scripts": {
-    "gen-widget": "cwb gen-widget --propertiesFile uidInput.json --webComponentBundle lib/uid-input.es5.min.js --outputDir uid_widget",
-    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInput.json --webComponentBundle lib/uid-input.es5.min.js --outputDir assets",
+    "gen-widget": "cwb gen-widget --propertiesFile uidInputWithBootstrap.json --webComponentBundle lib/uid-input-with-bootstrap.es5.min.js --outputDir uid_widget",
+    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInputWithBootstrap.json --webComponentBundle lib/uid-input-with-bootstrap.es5.min.js --outputDir assets",
     "start": "npm install && rollup -c -w --environment devMode:true",
     "lint": "prettier --write \"src/**/*.{js,ts,tsx}\"",
     "bundle": "tsc && rollup -c",

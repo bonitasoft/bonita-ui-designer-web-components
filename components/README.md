@@ -7,11 +7,11 @@ Use Lerna to get a mono repo with multiple node package
 
 ## Mandatory dependencies
 
-You need to have **lerna** and **nodejs > 10** to build this repository
+You need to have **lerna**, **rollup**, and **nodejs > 10** to build this repository
 
 Run `npm install -g lerna` to install lerna globally
+Run `npm install -g rollup` to install rollup globally
     
-
 ## Duplicate a web component
 
 If you want to duplicate a web component to create a similar one, you can use the custom widget builder (cwb) CLI.  
@@ -19,9 +19,9 @@ First install the CLI:
 ```bash
 $ npm install -g @bonitasoft/custom-widget-builder
 ```
-Then run the cwb command, for instance to duplicate the `pb-input` web component to the new `my-input`:
+Then go to widgets folder and run the cwb command, for instance to duplicate the `uid-input` web component to the new `my-input`:
 ```bash
-$ cwb copy-wc --srcDir pb-input --destDir my-input
+$ cwb duplicate-widget --srcDir uid-input --destDir my-input
 ```
 
 ## Build all packages
