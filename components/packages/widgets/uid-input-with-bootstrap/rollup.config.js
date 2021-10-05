@@ -10,7 +10,7 @@ let plugins = [typescript()];
 
 if (devMode) {
   // Create a server for dev mode
-  plugins.push(serve({ contentBase: '' }));
+  plugins.push(serve({ contentBase: '',port: '10002' }));
   // Allow to livereload on any update
   plugins.push(livereload('dist'));
 }

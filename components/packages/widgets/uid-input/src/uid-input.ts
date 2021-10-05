@@ -136,7 +136,8 @@ export class UidInput extends LitElement {
       .label-elem {
         font-size: 14px;
         font-weight: 700;
-        padding-left: 0
+        padding-left: 15px;
+        padding-right: 15px;
       }
       
       /* Add a red star after required inputs */
@@ -144,9 +145,24 @@ export class UidInput extends LitElement {
         content: " *";
         color: #C00;
       }
+
+      .container {
+        display: flex;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .container-row {
+        flex-direction: row;
+      }
       
-      .text-right {
-        text-align: right; 
+      .container-col {
+        flex-direction: column;
+      }
+      
+      .item-grow {
+        width: 100%;
       }
 
     `;
@@ -154,10 +170,10 @@ export class UidInput extends LitElement {
 
   render() {
     return html`
-      <div id="${this.id}" class="container">
-        <div class="row">
+      <div id="${this.id}" class="container ${this.getContainerCssClass()}">
           ${this.getLabel()}
           <input 
+            style="${this.getInputCss()}"
             class="${this.getInputCssClass()}"
             id="input"
             name="${this.name}"
@@ -172,7 +188,6 @@ export class UidInput extends LitElement {
             maxlength="${this.maxLength}"
             ?readonly="${this.readOnly}"
           />
-        </div>
       </div>
     `;
   }
@@ -183,19 +198,33 @@ export class UidInput extends LitElement {
     }
     return html`
         <label
-          class="${this.getLabelCssClass()}"
-          for="input"
+          style="${this.getLabelCss()}" 
+          class="${this.getLabelCssClass()}" 
+          for="input" 
         >${this.label}</label>
         `
   }
 
+  private getContainerCssClass() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
+  }
+
   private getLabelCssClass() : string {
-    return (this.required ? "label-required " : "") + "label-elem form-horizontal col-form-label " +
-      (!this.labelHidden && this.labelPosition === 'left' ? "col-" + this.labelWidth + " text-right" : "col-12");
+    return "label-elem " + (this.required ? " label-required" : "")
+    + (!this.labelHidden && this.labelPosition === 'left' ? "" : " item-grow");
   }
 
   private getInputCssClass() : string {
-    return "form-control input-elem col";
+    return "input-elem item-grow";
+  }
+
+  private getLabelCss() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ?
+        "text-align: right; flex-basis: " + (this.labelWidth*100/12) + "%;" : "";
+  }
+
+  private getInputCss() : string {
+    return "";
   }
 
   private valueChanged(e: any) {
