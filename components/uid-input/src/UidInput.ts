@@ -32,7 +32,6 @@ export const {setLocale} = configureLocalization({
   }}
 });
 
-
 /**
  * Input field, optionally with a label, where the user can enter information
  */
