@@ -8,7 +8,7 @@ lib
 
 build
 
-components/coverage
+components_legacy/coverage
 
 **/*.log
 
