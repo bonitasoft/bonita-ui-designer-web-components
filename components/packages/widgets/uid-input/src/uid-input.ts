@@ -1,4 +1,4 @@
-import {css, html, LitElement} from 'lit';
+import { html } from 'lit-element';
 import {property, customElement} from 'lit/decorators.js';
 
 // @ts-ignore
@@ -8,6 +8,7 @@ import * as i18n_es from "./i18n/es-ES.json";
 import * as i18n_fr from "./i18n/fr.json";
 import * as i18n_ja from "./i18n/ja.json";
 import * as i18n_pt from "./i18n/pt-BR.json";
+import {UidElement} from "./uid-element";
 
 // Registers i18n loader
 registerTranslateConfig({
@@ -18,7 +19,7 @@ registerTranslateConfig({
  * Input field, optionally with a label, where the user can enter information
  */
 @customElement('uid-input')
-export class UidInput extends LitElement {
+export class UidInput extends UidElement {
 
   static readonly LABEL_DEFAULT = "defaultLabel";
 
@@ -121,60 +122,14 @@ export class UidInput extends LitElement {
   }
 
   static get styles() {
-    return css`
-      :host {
-        display: block;
-        font-family: sans-serif;
-        text-align: left;
-      }
-
-      .input-elem {
-        font-size: 14px;
-        height: 20px;
-      }
-      
-      .label-elem {
-        font-size: 14px;
-        font-weight: 700;
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-      
-      /* Add a red star after required inputs */
-      .label-required:after {
-        content: " *";
-        color: #C00;
-      }
-
-      .container {
-        display: flex;
-        align-items: center;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-
-      .container-row {
-        flex-direction: row;
-      }
-      
-      .container-col {
-        flex-direction: column;
-      }
-      
-      .item-grow {
-        width: 100%;
-      }
-
-    `;
+    return super.styles;
   }
 
   render() {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
           ${this.getLabel()}
-          <input 
-            style="${this.getInputCss()}"
-            class="${this.getInputCssClass()}"
+          <input
             id="input"
             name="${this.name}"
             type="${this.type}"
@@ -187,6 +142,7 @@ export class UidInput extends LitElement {
             minlength="${this.minLength}"
             maxlength="${this.maxLength}"
             ?readonly="${this.readOnly}"
+            ${this.required ? " required" : ""}
           />
       </div>
     `;
@@ -200,7 +156,7 @@ export class UidInput extends LitElement {
         <label
           style="${this.getLabelCss()}" 
           class="${this.getLabelCssClass()}" 
-          for="input" 
+          for="input"
         >${this.label}</label>
         `
   }
@@ -210,21 +166,13 @@ export class UidInput extends LitElement {
   }
 
   private getLabelCssClass() : string {
-    return "label-elem " + (this.required ? " label-required" : "")
-    + (!this.labelHidden && this.labelPosition === 'left' ? "" : " item-grow");
-  }
-
-  private getInputCssClass() : string {
-    return "input-elem item-grow";
+    return (this.required ? "required" : "")
+    + (!this.labelHidden && this.labelPosition === 'left' ? " left" : "");
   }
 
   private getLabelCss() : string {
     return !this.labelHidden && this.labelPosition === 'left' ?
-        "text-align: right; flex-basis: " + (this.labelWidth*100/12) + "%;" : "";
-  }
-
-  private getInputCss() : string {
-    return "";
+        " flex-basis: " + (this.labelWidth*100/12) + "%;" : "";
   }
 
   private valueChanged(e: any) {

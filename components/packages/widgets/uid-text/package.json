@@ -12,7 +12,6 @@
     "test"
   ],
   "dependencies": {
-    "bootstrap": "^4.5.3",
     "lit": "*",
     "lit-translate": "^1.2.1"
   },

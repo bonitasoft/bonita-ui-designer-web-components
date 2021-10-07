@@ -1,15 +1,15 @@
-import {css, html, LitElement} from 'lit';
+import {css, html} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 
 import {unsafeHTML} from "lit-html/directives/unsafe-html";
 // @ts-ignore
-import bootstrapStyle from './style.scss';
 import {get, listenForLangChanged, registerTranslateConfig, use} from "lit-translate";
 import * as i18n_en from "./i18n/en.json";
 import * as i18n_es from "./i18n/es-ES.json";
 import * as i18n_fr from "./i18n/fr.json";
 import * as i18n_ja from "./i18n/ja.json";
 import * as i18n_pt from "./i18n/pt-BR.json";
+import {UidElement} from "./uid-element";
 
 // Registers i18n loader
 registerTranslateConfig({
@@ -17,7 +17,7 @@ registerTranslateConfig({
 });
 
 @customElement('uid-text')
-export class UidText extends LitElement {
+export class UidText extends UidElement {
 
   static readonly LABEL_DEFAULT = "defaultLabel";
 
@@ -95,48 +95,37 @@ export class UidText extends LitElement {
   }
 
   static get styles() {
-    return css`
-      :host {
-        display: block;
-        font-family: sans-serif;
-        text-align: left;
-      }
-
-      .label-elem {
-        font-size: 14px;
-        font-weight: 700;
-        padding-left: 0;
-        padding-top: 0;
-      }
-      
-      .paragraph-elem {
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #333;
-        background-color: #fff;
-        margin: 0;
-        padding-left: 0;
-      }
-      
-      .text-center {
-        text-align: center!important;
-      }
-      .text-right {
-        text-align: right!important;
-      }
-    `;
+    return  [
+        super.styles,
+        css`
+          .p {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding-left: 0;
+          }
+          
+          div.text-center > p{
+            text-align: center;
+          }
+          
+          div.text-right > p{
+            text-align: right;
+          }
+        `];
   }
 
   render() {
     return html`
-      <style>${bootstrapStyle}</style>
-      <div id="${this.id}" class="container">
-        <div class="row">
-          ${this.getLabel()}
-          <p
-              class="${this.getParagraphCssClass()}"
-          >${this.getTextValue()}</p>
+      <div id="${this.id}" class="container ${this.getContainerCssClass()}">
+        ${this.getLabel()}
+        <div class="${this.getParagraphCssClass()}">
+          <p>
+            ${this.getTextValue()}
+          </p>
         </div>
       </div>
     `;
@@ -144,7 +133,8 @@ export class UidText extends LitElement {
 
   private getTextValue() {
     if (this.allowHTML) {
-      return html`${unsafeHTML(this.text)}`
+      html`${unsafeHTML(this.text)}`
+      return "What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
     return html`${this.text}`
   }
@@ -155,19 +145,27 @@ export class UidText extends LitElement {
     }
     return html`
         <label
-          class="${this.getLabelCssClass()}"
+            style="${this.getLabelCss()}"
+            class="${this.getLabelCssClass()}"
         >${this.label}</label>
         `
   }
 
-  private getLabelCssClass() : string {
-    return "label-elem form-horizontal col-form-label " +
-      (!this.labelHidden && this.labelPosition === 'left' ? "col-" + this.labelWidth + " text-right": "col-12");
+  private getContainerCssClass() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
   }
 
   private getParagraphCssClass() : string {
-    return "form-control-static paragraph-elem " + (this.labelHidden ? "text-" + this.alignment + " " : "") +
-      "col";
+    return (!this.labelHidden) ? "text-" + this.alignment : "";
+  }
+
+  private getLabelCssClass() : string {
+    return (!this.labelHidden && this.labelPosition === 'left') ? "left" : "";
+  }
+
+  private getLabelCss() : string {
+    return (!this.labelHidden && this.labelPosition === 'left') ?
+        " flex-basis: " + (this.labelWidth*100/12) + "%; flex-shrink: 0;" : "";
   }
 
 }
