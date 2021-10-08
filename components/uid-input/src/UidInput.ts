@@ -152,7 +152,6 @@ export class UidInput extends LitElement {
   }
 
   render() {
-    // <style>${bootstrapStyle}</style>
     return html`
       <div id="${this.id}" class="container">
         <div class="row">
