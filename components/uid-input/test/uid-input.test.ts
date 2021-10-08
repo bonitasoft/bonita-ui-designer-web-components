@@ -1,6 +1,5 @@
-import { html } from 'lit';
-import { fixture, expect } from '@open-wc/testing';
-import { UidInput } from '../src';
+import {html} from 'lit';
+import {expect, fixture} from '@open-wc/testing';
 import '../src/uid-input.js';
 
 let uidInput:any;
@@ -150,12 +149,8 @@ describe('UidInput', () => {
     uidInput = await fixture(html`
       <uid-input lang="fr"></uid-input>
     `);
-    // Wait for localize to import locales
-    // TODO: Check if we want the WC to send an event when locales are loaded
-    setTimeout(() => {
-      const label = uidInput.shadowRoot.querySelector('label');
-      expect(label.textContent).equal("Label par défaut");
-      }, 100);
+    const label = uidInput.shadowRoot.querySelector('label');
+    expect(label.textContent).equal("Label par défaut");
   });
 
  });

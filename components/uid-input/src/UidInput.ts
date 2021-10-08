@@ -1,7 +1,6 @@
 import {css, html, LitElement} from 'lit';
 import {property} from 'lit/decorators.js';
-import {msg, localized} from '@lit/localize';
-import {configureLocalization} from '@lit/localize';
+import {msg, localized, configureLocalization} from '@lit/localize';
 import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 const template_es = import('./locales/es-ES.js');
 const template_fr = import('./locales/fr.js');
