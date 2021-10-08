@@ -48,29 +48,30 @@ describe('uid-input', () => {
       <uid-input required></uid-input>
     `);
     const label = uidInput.shadowRoot.querySelector('label');
-    expect(label.classList.value).to.include("label-required");
+    expect(label.classList.value).to.include("required");
   });
 
-  it('Should set the css classes col-xxx and text-right the when attribute label-position/label-width are set', async () => {
+  it('Should set the label position and size when attribute label-position/label-width are set', async () => {
     uidInput = await fixture(html`
-      <uid-input label-position="left" label-width="5"></uid-input>
+      <uid-input label-position="left" label-width="3"></uid-input>
     `);
+    let container = uidInput.shadowRoot.querySelector('.container');
     let label = uidInput.shadowRoot.querySelector('label');
-    // If position left, take the label-width
-    expect(label.classList.value).to.include("col-5");
-    expect(label.classList.value).to.include("text-right");
-    let input = uidInput.shadowRoot.querySelector('input');
-    expect(input.classList.value).to.include("col");
+
+    expect(container.classList.value).to.include("container-row");
+    expect(label.style.flexBasis).equals("25%");
+    expect(label.classList.value).to.include("left");
 
     uidInput = await fixture(html`
       <uid-input label-position="top" label-width="5"></uid-input>
     `);
     label = uidInput.shadowRoot.querySelector('label');
-    // If position is not left, take 12
-    expect(label.classList.value).to.include("col-12");
-    expect(label.classList.value).not.to.include("text-right");
-    input = uidInput.shadowRoot.querySelector('input');
-    expect(input.classList.value).to.include("col");
+    container = uidInput.shadowRoot.querySelector('.container');
+
+    expect(container.classList.value).to.include("container-col");
+    expect(label.style.flexBasis).equals('');
+    expect(label.classList.value).not.to.include("left");
+
   });
 
   it('Should set the placeholder when attribute placeholder is set', async () => {

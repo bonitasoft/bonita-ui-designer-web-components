@@ -16,6 +16,7 @@ registerTranslateConfig({
   loader: (lang) => Promise.resolve(UidText.getCatalog(lang))
 });
 
+
 @customElement('uid-text')
 export class UidText extends UidElement {
 
@@ -96,45 +97,34 @@ export class UidText extends UidElement {
 
   static get styles() {
     return  [
-        super.styles,
-        css`
-          .p {
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #333;
-            background-color: #fff;
-            margin: 0;
-            padding-left: 0;
-          }
-          
-          div.text-center > p{
-            text-align: center;
-          }
-          
-          div.text-right > p{
-            text-align: right;
-          }
-        `];
+      UidElement.styles,
+      css`
+        .p {
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          font-size: 14px;
+          line-height: 1.42857143;
+          color: #333;
+          background-color: #fff;
+          margin: 0;
+          padding-left: 0;
+        }
+      `];
   }
 
   render() {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
         ${this.getLabel()}
-        <div class="${this.getParagraphCssClass()}">
-          <p>
-            ${this.getTextValue()}
-          </p>
-        </div>
+        <p  style="${this.getParagraphCss()}">
+          ${this.getTextValue()}
+        </p>
       </div>
     `;
   }
 
   private getTextValue() {
     if (this.allowHTML) {
-      html`${unsafeHTML(this.text)}`
-      return "What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      return html`${unsafeHTML(this.text)}`;
     }
     return html`${this.text}`
   }
@@ -155,8 +145,8 @@ export class UidText extends UidElement {
     return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
   }
 
-  private getParagraphCssClass() : string {
-    return (!this.labelHidden) ? "text-" + this.alignment : "";
+  private getParagraphCss() : string {
+    return "text-align: " + this.alignment + ";";
   }
 
   private getLabelCssClass() : string {
