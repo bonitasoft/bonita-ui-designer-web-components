@@ -5,7 +5,7 @@ Simple input (with label) web component.
 
 (This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation)
 
-# Using the component
+# ➤ Using the component
 
 ## Installation
 
@@ -51,8 +51,9 @@ npm i @bonitasoft/uid-input
 |---------------|-----------------------|
 | `valueChange` | `CustomEvent<string>` |
 
+<br>
 
-# Developing the component
+# ➤ Developing the component
 
 ## Linting and formatting
 
