@@ -1,5 +1,6 @@
-import {css, html, LitElement} from 'lit';
+import {html} from 'lit-element';
 import {property} from 'lit/decorators.js';
+import {UidElement} from "./uid-element";
 import {msg, localized, configureLocalization} from '@lit/localize';
 import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 const template_es = import('./locales/es-ES.js');
@@ -35,7 +36,7 @@ export const {setLocale} = configureLocalization({
  * Input field, optionally with a label, where the user can enter information
  */
 @localized()
-export class UidInput extends LitElement {
+export class UidInput extends UidElement {
 
   static readonly LABEL_DEFAULT = "Default label";
 
@@ -120,44 +121,14 @@ export class UidInput extends LitElement {
   }
 
   static get styles() {
-    return css`
-      :host {
-        display: block;
-        font-family: sans-serif;
-        text-align: left;
-      }
-
-      .input-elem {
-        font-size: 14px;
-        height: 20px;
-      }
-
-      .label-elem {
-        font-size: 14px;
-        font-weight: 700;
-        padding-left: 0
-      }
-
-      /* Add a red star after required inputs */
-      .label-required:after {
-        content: " *";
-        color: #C00;
-      }
-
-      .text-right {
-        text-align: right;
-      }
-
-    `;
+    return super.styles;
   }
 
   render() {
     return html`
-      <div id="${this.id}" class="container">
-        <div class="row">
+      <div id="${this.id}" class="container ${this.getContainerCssClass()}">
           ${this.getLabel()}
           <input
-            class="${this.getInputCssClass()}"
             id="input"
             name="${this.name}"
             type="${this.type}"
@@ -170,8 +141,8 @@ export class UidInput extends LitElement {
             minlength="${this.minLength}"
             maxlength="${this.maxLength}"
             ?readonly="${this.readOnly}"
+            ${this.required ? " required" : ""}
           />
-        </div>
       </div>
     `;
   }
@@ -182,19 +153,25 @@ export class UidInput extends LitElement {
     }
     return html`
       <label
+        style="${this.getLabelCss()}"
         class="${this.getLabelCssClass()}"
         for="input"
       >${this.label}</label>
     `
   }
 
-  private getLabelCssClass() : string {
-    return (this.required ? "label-required " : "") + "label-elem form-horizontal col-form-label " +
-      (!this.labelHidden && this.labelPosition === 'left' ? "col-" + this.labelWidth + " text-right" : "col-12");
+  private getContainerCssClass() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
   }
 
-  private getInputCssClass() : string {
-    return "form-control input-elem col";
+  private getLabelCssClass() : string {
+    return (this.required ? "required" : "")
+      + (!this.labelHidden && this.labelPosition === 'left' ? " left" : "");
+  }
+
+  private getLabelCss() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ?
+      " flex-basis: " + (this.labelWidth*100/12) + "%;" : "";
   }
 
   private valueChanged(e: any) {
