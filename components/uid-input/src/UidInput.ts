@@ -1,4 +1,4 @@
-import {html} from 'lit-element';
+import {html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {UidElement} from "./uid-element";
 import {msg, localized, configureLocalization} from '@lit/localize';
@@ -141,7 +141,7 @@ export class UidInput extends UidElement {
             minlength="${this.minLength}"
             maxlength="${this.maxLength}"
             ?readonly="${this.readOnly}"
-            ${this.required ? " required" : ""}
+            ?required="${this.required}"
           />
       </div>
     `;

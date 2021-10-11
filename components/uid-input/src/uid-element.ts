@@ -1,4 +1,4 @@
-import { LitElement, css, CSSResultGroup } from 'lit-element';
+import { LitElement, css, CSSResultGroup } from 'lit';
 
 export class UidElement extends LitElement {
   static get styles() {
