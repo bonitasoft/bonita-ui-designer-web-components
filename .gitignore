@@ -8,7 +8,9 @@ lib
 
 build
 
-components_legacy/coverage
+#components/**/coverage
+
+components/custom-elements.json
 
 **/*.log
 
