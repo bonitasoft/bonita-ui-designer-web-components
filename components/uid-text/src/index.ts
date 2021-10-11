@@ -1,1 +1,1 @@
-import './uid-text';
+export { UidText } from './UidText.js';

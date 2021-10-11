@@ -1,8 +1,27 @@
-# `uid-text`
+# \<uid-text>
+![npmVersion](https://img.shields.io/npm/v/@bonitasoft/uid-text?color=blue&style=plastic)
 
-![npmVersion](https://img.shields.io/npm/v/uid-text?color=blue&style=plastic)
+Simple text (with label) web component.
 
-Simple text web component
+(This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation)
+
+# ➤ Using the component
+
+## Installation
+
+```bash
+npm i @bonitasoft/uid-text
+```
+
+## Usage
+
+```html
+<script type="module">
+  import '@bonitasoft/uid-text/dist/uid-text.bundle.min.js';
+</script>
+
+<uid-text></uid-text>
+```
 
 ## Attributes
 
@@ -19,14 +38,65 @@ Simple text web component
 | `text`           | `string`  | ""      |                    |
 
 Note: If `allow-html` is set, this is unsafe to use the `text` attribute with any user-provided input that hasn't been
-      sanitized or escaped, as it may lead to cross-site-scripting vulnerabilities.
+sanitized or escaped, as it may lead to cross-site-scripting vulnerabilities.
 
-## Usage
+<br>
 
-Run:
+# ➤ Developing the component
 
-    npm install uid-text
+## Linting and formatting
 
-Then import `node_modules/uid-text/lib/uid-text.es5.min.js`
+To scan the project for linting and formatting errors, run
 
-And you can use new html tag `<uid-text text="My text"></uid-text>`
+```bash
+npm run lint
+```
+
+To automatically fix linting and formatting errors, run
+
+```bash
+npm run format
+```
+
+## Testing with Web Test Runner
+
+To execute a single test run:
+
+```bash
+npm run test
+```
+
+To run the tests in interactive watch mode run:
+
+```bash
+npm run test:watch
+```
+
+## Demoing with Storybook
+
+To run a local instance of Storybook for your component, run
+
+```bash
+npm run storybook
+```
+
+To build a production version of Storybook, run
+
+```bash
+npm run storybook:build
+```
+
+
+## Tooling configs
+
+For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
+
+If you customize the configuration a lot, you can consider moving them to individual files.
+
+## Local Demo with `web-dev-server`
+
+```bash
+npm start
+```
+
+To run a local development server that serves the basic demo located in `demo/index.html`

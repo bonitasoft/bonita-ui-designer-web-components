@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <title>Hello uid-text!</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../dist/src/uid-text.js';
+
+    render(
+      html`
+        <uid-text text="10"></uid-text>
+        <uid-text label-position="left" label-width="3" lang="fr"
+                  text="<b><i> My text in bold </br> and italic</i></b> " allow-html></uid-text>
+        <uid-text label="My label" label-position="top" label-width="3"
+                  text="<b><i> My text in bold </br> and italic</i></b>" alignment="right" allow-html></uid-text>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
+</body>
+</html>

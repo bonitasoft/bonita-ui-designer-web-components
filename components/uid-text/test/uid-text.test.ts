@@ -1,8 +1,8 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import {html} from 'lit';
+import {expect, fixture} from '@open-wc/testing';
+import '../src/uid-text.js';
 
-import '../lib/uid-text.es5.min.js';
-
-let uidText;
+let uidText:any;
 
 beforeEach(async () => {
   uidText = await fixture(html`
@@ -95,7 +95,8 @@ describe('uid-text', () => {
 
 });
 
-function removeComment(str) {
-  return str.replace(/<\!--.*?-->/g, "");
+function removeComment(str: string) {
+  // Remove comments, and leading and trailing whitespaces
+  return str.replace(/<\!--.*?-->/g, "").trim();
 }
 
