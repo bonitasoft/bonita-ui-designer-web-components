@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 # Build and test all components
+SCRIPTDIR=$(cd $(dirname $0) && pwd)
+BASEDIR=$SCRIPTDIR/..
+
+cd $BASEDIR
 cd components
 for dir in *
 do
