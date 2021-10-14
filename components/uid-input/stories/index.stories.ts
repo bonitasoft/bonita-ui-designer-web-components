@@ -5,9 +5,9 @@ export default {
   title: 'UidInput',
   component: 'uid-input',
   argTypes: {
-    title: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    label: { control: 'text' },
+    labelHidden: { control: 'boolean' },
+    value: { control: 'text' },
   },
 };
 
@@ -18,22 +18,21 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  title?: string;
-  counter?: number;
-  textColor?: string;
+  label?: string;
+  labelHidden?: boolean;
+  value?: string;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  title = 'Hello world',
-  counter = 5,
-  textColor,
+  label = 'my label', labelHidden = false,
+  value = "abc",
   slot,
 }: ArgTypes) => html`
   <uid-input
-    style="--uid-input-text-color: ${textColor || 'black'}"
-    .title=${title}
-    .counter=${counter}
+    label=${label}
+    label-hidden=${labelHidden}
+    value=${value}
   >
     ${slot}
   </uid-input>
@@ -41,14 +40,14 @@ const Template: Story<ArgTypes> = ({
 
 export const Regular = Template.bind({});
 
-export const CustomTitle = Template.bind({});
-CustomTitle.args = {
-  title: 'My title',
+export const CustomLabel = Template.bind({});
+CustomLabel.args = {
+  label: 'My custom label',
 };
 
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 123456,
+export const CustomValue = Template.bind({});
+CustomValue.args = {
+  value: "new value",
 };
 
 export const SlottedContent = Template.bind({});
