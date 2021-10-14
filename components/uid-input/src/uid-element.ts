@@ -1,6 +1,45 @@
 import { LitElement, css, CSSResultGroup } from 'lit';
+import {property} from 'lit/decorators.js';// eslint-disable-line
+import {localized, configureLocalization} from '@lit/localize';
+import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 
+const templateEs = import('./locales/es-ES.js');
+const templateFr = import('./locales/fr.js');
+const templateJa = import('./locales/ja.js');
+const templatePt = import('./locales/pt-BR.js');
+
+export type supportedLang = "es-ES" | "fr" | "ja" | "pt-BR";
+
+export const {setLocale} = configureLocalization({
+  sourceLocale,
+  targetLocales,
+  loadLocale: (locale) => {
+    switch (locale) {
+      case 'es-ES': {
+        return templateEs;
+      }
+      case 'fr': {
+        return templateFr;
+      }
+      case 'ja': {
+        return templateJa;
+      }
+      case 'pt-BR': {
+        return templatePt;
+      }
+      default: {
+        // should not happen
+        return templateFr;
+      }
+  }}
+});
+
+@localized()
 export class UidElement extends LitElement {
+
+  @property({ attribute: 'lang', type: String, reflect: true })
+  lang: supportedLang = "en" as supportedLang;
+
   static get styles() {
     return css`
       :host {
@@ -45,5 +84,4 @@ export class UidElement extends LitElement {
       }
     ` as CSSResultGroup;
   }
-
 }

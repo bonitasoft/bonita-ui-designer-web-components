@@ -1,49 +1,17 @@
-import {html} from 'lit';
-import {property} from 'lit/decorators.js';
-import {UidElement} from "./uid-element";
-import {msg, localized, configureLocalization} from '@lit/localize';
-import {sourceLocale, targetLocales} from './locales/locale-codes.js';
-const template_es = import('./locales/es-ES.js');
-const template_fr = import('./locales/fr.js');
-const template_ja = import('./locales/ja.js');
-const template_pt = import('./locales/pt-BR.js');
-
-export const {setLocale} = configureLocalization({
-  sourceLocale,
-  targetLocales,
-  loadLocale: (locale) => {
-    switch (locale) {
-      case 'es-ES': {
-        return template_es;
-      }
-      case 'fr': {
-        return template_fr;
-      }
-      case 'ja': {
-        return template_ja;
-      }
-      case 'pt-BR': {
-        return template_pt;
-      }
-      default: {
-        // should not happen
-        return template_fr;
-      }
-  }}
-});
+import {CSSResultGroup,TemplateResult, html} from 'lit';
+import {property} from 'lit/decorators.js';// eslint-disable-line
+import {msg} from '@lit/localize';
+import {targetLocales} from './locales/locale-codes.js';
+import {UidElement, setLocale} from "./uid-element";
 
 /**
  * Input field, optionally with a label, where the user can enter information
  */
-@localized()
 export class UidInput extends UidElement {
 
   static readonly LABEL_DEFAULT = "Default label";
 
   private name = "uidInput";
-
-  @property({ attribute: 'lang', type: String, reflect: true })
-  lang: string = "en";
 
   // Common properties below are handled by the div above uid-input:
 
@@ -104,27 +72,24 @@ export class UidInput extends UidElement {
   @property({ attribute: 'step', type: Number, reflect: true })
   step: number = 1;
 
-  async attributeChangedCallback(name: string, old: string|null, value: string|null) {
+  async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
-      // @ts-ignore
-      if (targetLocales.includes(this.lang)) {
-        setLocale(this.lang).then(() => {
+      if (targetLocales.includes(super.lang)) {
+        setLocale(super.lang).then(() => {
           if (this.label === UidInput.LABEL_DEFAULT) {
             this.label = msg("Default label"); // Need real string for lit-translate
           }
-        }).catch((e) => {
-          console.log('setLocale() error ! ', e);
-        });
+        })
       }
     }
   }
 
-  static get styles() {
+  static get styles(): CSSResultGroup {
     return super.styles;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
           ${this.getLabel()}
@@ -135,7 +100,7 @@ export class UidInput extends UidElement {
             min="${this.min}"
             max="${this.max}"
             step="${this.step}"
-            value="${this.value}"
+            .value="${this.value}"
             @input=${(e: any) => this.valueChanged(e)}
             placeholder="${this.placeholder}"
             minlength="${this.minLength}"
@@ -165,25 +130,24 @@ export class UidInput extends UidElement {
   }
 
   private getLabelCssClass() : string {
-    return (this.required ? "required" : "")
-      + (!this.labelHidden && this.labelPosition === 'left' ? " left" : "");
+    return `${this.required ? "required" : ""}
+            ${!this.labelHidden && this.labelPosition === 'left' ? " left" : ""}`;
   }
 
   private getLabelCss() : string {
-    return !this.labelHidden && this.labelPosition === 'left' ?
-      " flex-basis: " + (this.labelWidth*100/12) + "%;" : "";
+    return !this.labelHidden && this.labelPosition === 'left' ? ` flex-basis: ${this.labelWidth*100/12}%;` : "";
   }
 
   private valueChanged(e: any) {
-    let inputElem = this.shadowRoot!.querySelector("input") as HTMLInputElement;
+    const inputElem = super.shadowRoot!.querySelector("input") as HTMLInputElement;
     if (!inputElem.checkValidity()) {
       inputElem.style.borderColor = "red";
     } else {
       inputElem.style.borderColor = "";
     }
 
-    let value = e.target.value;
-    this.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
+    let value = e.target.value; // eslint-disable-line
+    super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 
 }
