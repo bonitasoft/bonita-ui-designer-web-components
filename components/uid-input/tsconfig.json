@@ -15,8 +15,7 @@
     "inlineSources": true,
     "rootDir": "./",
     "declaration": true,
-    "incremental": true,
-    "resolveJsonModule": true
+    "incremental": true
   },
   "include": ["**/*.ts"]
 }
