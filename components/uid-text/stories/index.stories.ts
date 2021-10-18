@@ -5,9 +5,14 @@ export default {
   title: 'UidText',
   component: 'uid-text',
   argTypes: {
-    title: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    label: { control: 'text' },
+    labelHidden: { control: 'boolean' },
+    text: { control: 'text' },
+    labelPosition: {
+      options: ['top', 'left'],
+      control: 'radio',
+    },
+    labelWidth: { control: 'number' },
   },
 };
 
@@ -18,22 +23,36 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  title?: string;
-  counter?: number;
-  textColor?: string;
+  label?: string;
+  labelHidden?: boolean;
+  text?: string;
+  labelPosition?: string;
+  labelWidth?: number;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  title = 'Hello world',
-  counter = 5,
-  textColor,
+  label = 'default',
+  labelHidden = false,
+  text = 'Lorem Ipsum is simply dummy text of the printing ' +
+    "and typesetting industry. Lorem Ipsum has been the industry's *" +
+    'standard dummy text ever since the 1500s, when an unknown printer ' +
+    'took a galley of type and scrambled it to make a type specimen book. ' +
+    'It has survived not only five centuries, but also the leap into electronic ' +
+    'typesetting, remaining essentially unchanged. It was popularised in the 1960s' +
+    ' with the release of Letraset sheets containing Lorem Ipsum passages, ' +
+    'and more recently with desktop publishing software like Aldus PageMaker ' +
+    'including versions of Lorem Ipsum.',
+  labelPosition = 'top',
+  labelWidth,
   slot,
 }: ArgTypes) => html`
   <uid-text
-    style="--uid-text-text-color: ${textColor || 'black'}"
-    .title=${title}
-    .counter=${counter}
+    label=${label}
+    text=${text}
+    label-position=${labelPosition}
+    label-width=${labelWidth}
+    ${getLabelHidden(labelHidden)}
   >
     ${slot}
   </uid-text>
@@ -41,14 +60,16 @@ const Template: Story<ArgTypes> = ({
 
 export const Regular = Template.bind({});
 
-export const CustomTitle = Template.bind({});
-CustomTitle.args = {
-  title: 'My title',
+export const CustomLabel = Template.bind({});
+CustomLabel.args = {
+  label: 'My custom label',
+  labelPosition: 'left',
+  labelWidth: 6,
 };
 
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 123456,
+export const CustomValue = Template.bind({});
+CustomValue.args = {
+  text: 'new value',
 };
 
 export const SlottedContent = Template.bind({});
@@ -58,3 +79,10 @@ SlottedContent.args = {
 SlottedContent.argTypes = {
   slot: { table: { disable: true } },
 };
+
+function getLabelHidden(labelHidden: boolean) {
+  if (!labelHidden) {
+    return html``;
+  }
+  return html`label-hidden`;
+}

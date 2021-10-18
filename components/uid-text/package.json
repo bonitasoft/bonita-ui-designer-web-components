@@ -49,39 +49,63 @@
     "@open-wc/testing": "next",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
-    "@web/dev-server": "^0.1.24",
-    "@web/dev-server-storybook": "^0.0.2",
+    "@web/dev-server": "^0.1.25",
+    "@web/dev-server-storybook": "next",
     "@web/test-runner": "next",
     "concurrently": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-lit": "^1.6.0",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "prettier": "^2.4.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   },
   "customElements": "custom-elements.json",
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
     "extends": [
       "@open-wc",
-      "prettier"
+      "prettier",
+      "plugin:lit/recommended"
     ],
     "plugins": [
       "@typescript-eslint"
     ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      }
+    },
     "rules": {
-      "no-unused-vars": "off",
+      "no-use-before-define": [2, {"functions": false, "classes": false}],
       "@typescript-eslint/no-unused-vars": [
         "error"
       ],
       "import/no-unresolved": "off",
       "import/extensions": [
         "error",
-        "always",
+        "ignorePackages",
         {
-          "ignorePackages": true
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ],
+      "@typescript-eslint/no-inferrable-types": [
+        2,
+        {
+          "ignoreParameters": true,
+          "ignoreProperties": true
         }
       ]
     }

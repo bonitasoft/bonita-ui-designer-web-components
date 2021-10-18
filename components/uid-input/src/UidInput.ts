@@ -30,9 +30,15 @@ export class UidInput extends UidElement {
   @property({ attribute: 'required', type: Boolean, reflect: true })
   required: boolean = false;
 
+  /**
+   * Specifies the minimum length of textual data (strings)
+   */
   @property({ attribute: 'min-length', type: Number, reflect: true })
   minLength: number | undefined;
 
+  /**
+   * Specifies the maximum length of textual data (strings)
+   */
   @property({ attribute: 'max-length', type: Number, reflect: true })
   maxLength: number | undefined;
 
@@ -63,9 +69,15 @@ export class UidInput extends UidElement {
   @property({ attribute: 'type', type: String, reflect: true })
   type: string = "text";
 
+  /**
+   * Specifies the minimum value of numerical input type
+   */
   @property({ attribute: 'min', type: Number, reflect: true })
   min: number | undefined;
 
+  /**
+   * Specifies the maximum value of numerical input type
+   */
   @property({ attribute: 'max', type: Number, reflect: true })
   max: number | undefined;
 

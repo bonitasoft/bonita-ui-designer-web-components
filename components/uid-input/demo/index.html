@@ -18,10 +18,10 @@
 
     render(
       html`
-        <uid-input placeholder="Type a value" type="text" value="10" min="1" max="100"
-                   min-length="3" max-length="10" label-position="top" label-width="5" lang="fr" required></uid-input>
+        <uid-input placeholder="Type a value" type="number" value="10" min="1" max="10"
+                   min-length="3" max-length="20" label-position="top" label-width="5" lang="fr" required></uid-input>
         <uid-input label="My label" placeholder="Type a value" type="text" value="10" min="1" max="100"
-                   min-length="3" max-length="10" label-position="left" label-width="3" required></uid-input>
+                   min-length="3" max-length="20" label-position="left" label-width="3" required></uid-input>
       `,
       document.querySelector('#demo')
     );
