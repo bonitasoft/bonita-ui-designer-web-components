@@ -158,7 +158,7 @@ export class UidInput extends UidElement {
       inputElem.style.borderColor = "";
     }
 
-    let value = e.target.value; // eslint-disable-line
+    const { target: {value} } = e;
     super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 

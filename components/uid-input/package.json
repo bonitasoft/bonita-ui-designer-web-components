@@ -46,12 +46,12 @@
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@lit/localize-tools": "^0.3.7",
     "@open-wc/eslint-config": "^4.3.0",
-    "@open-wc/testing": "next",
+    "@open-wc/testing": "3.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "@web/dev-server": "^0.1.25",
-    "@web/dev-server-storybook": "next",
-    "@web/test-runner": "next",
+    "@web/dev-server-storybook": "0.3.8",
+    "@web/test-runner": "0.13.20",
     "concurrently": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -90,6 +90,7 @@
       "@typescript-eslint/no-unused-vars": [
         "error"
      ],
+      "import/no-unresolved": "off",
       "import/extensions": [
         "error",
         "ignorePackages",
