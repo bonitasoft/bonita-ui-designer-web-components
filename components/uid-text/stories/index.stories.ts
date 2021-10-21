@@ -1,23 +1,18 @@
 import { html, TemplateResult } from 'lit';
-import '../src/uid-input.js';
+import '../src/uid-text.js';
 
 export default {
-  title: 'UidInput',
-  component: 'uid-input',
+  title: 'UidText',
+  component: 'uid-text',
   argTypes: {
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
-    value: { control: 'text' },
-    required: { control: 'boolean' },
-    minLength: { control: 'number' },
-    maxLength: { control: 'number'},
+    text: { control: 'text' },
     labelPosition: {
       options: ['top', 'left'],
-      control: 'radio'
+      control: 'radio',
     },
     labelWidth: { control: 'number' },
-    min: { control: 'number' },
-    max: { control: 'number' }
   },
 };
 
@@ -30,56 +25,51 @@ interface Story<T> {
 interface ArgTypes {
   label?: string;
   labelHidden?: boolean;
-  value?: string;
-  required?: boolean;
-  minLength?: number;
-  maxLength?: number;
+  text?: string;
   labelPosition?: string;
   labelWidth?: number;
-  min?: number;
-  max?: number;
   slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
-  label = "default",
+  label = 'default',
   labelHidden = false,
-  value = "abc",
-  required = true,
-  minLength = 3,
-  maxLength = 10,
+  text = 'Lorem Ipsum is simply dummy text of the printing ' +
+    "and typesetting industry. Lorem Ipsum has been the industry's *" +
+    'standard dummy text ever since the 1500s, when an unknown printer ' +
+    'took a galley of type and scrambled it to make a type specimen book. ' +
+    'It has survived not only five centuries, but also the leap into electronic ' +
+    'typesetting, remaining essentially unchanged. It was popularised in the 1960s' +
+    ' with the release of Letraset sheets containing Lorem Ipsum passages, ' +
+    'and more recently with desktop publishing software like Aldus PageMaker ' +
+    'including versions of Lorem Ipsum.',
   labelPosition = 'top',
   labelWidth,
   slot,
-  min,
-  max
 }: ArgTypes) => html`
-  <uid-input
+  <uid-text
     label=${label}
-    value=${value}
-    min-length=${minLength}
-    max-length=${maxLength}
+    text=${text}
     label-position=${labelPosition}
     label-width=${labelWidth}
-    min=${min}
-    max=${max}
     ${getLabelHidden(labelHidden)}
-    ${getRequired(required)}
   >
     ${slot}
-  </uid-input>
+  </uid-text>
 `;
 
 export const Regular = Template.bind({});
 
 export const CustomLabel = Template.bind({});
 CustomLabel.args = {
-  label: 'My custom label'
+  label: 'My custom label',
+  labelPosition: 'left',
+  labelWidth: 6,
 };
 
 export const CustomValue = Template.bind({});
 CustomValue.args = {
-  value: "new value",
+  text: 'new value',
 };
 
 export const SlottedContent = Template.bind({});
@@ -96,11 +86,3 @@ function getLabelHidden(labelHidden: boolean) {
   }
   return html`label-hidden`;
 }
-
-function getRequired(required: boolean) {
-  if (!required) {
-    return html``;
-  }
-  return html`required`;
-}
-

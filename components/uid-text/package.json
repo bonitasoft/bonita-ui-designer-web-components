@@ -1,28 +1,28 @@
 {
-  "name": "@bonitasoft/uid-input",
-  "description": "An input with label",
-  "homepage": "https://github.com/bonitasoft/web-components/open-wc/uid-input#readme",
+  "name": "@bonitasoft/uid-text",
+  "description": "An text with label",
+  "homepage": "https://github.com/bonitasoft/web-components/open-wc/uid-text#readme",
   "license": "GPLv2",
   "version": "1.0.0",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "files": [
     "assets",
-    "dist/uid-input.bundle.min.js",
+    "dist/uid-text.bundle.min.js",
     "dist/locales/*.js",
-    "src/UidInput.ts",
-    "src/uid-input.ts",
+    "src/UidText.ts",
+    "src/uid-text.ts",
     "test"
   ],
   "exports": {
     ".": "./dist/src/index.js",
-    "./uid-input.js": "./dist/src/uid-input.js"
+    "./uid-text.js": "./dist/src/uid-text.js"
   },
   "scripts": {
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",
-    "bundle": "tsc && ./node_modules/.bin/esbuild dist/src/uid-input.js --minify-syntax --minify-whitespace --bundle --outfile=dist/uid-input.bundle.min.js",
+    "bundle": "tsc && ./node_modules/.bin/esbuild dist/src/uid-text.js --minify-syntax --minify-whitespace --bundle --outfile=dist/uid-text.bundle.min.js",
     "prepublish": "tsc && npm run analyze -- --exclude dist",
     "publish": "npm run bundle && npm run gen-widget-assets && npm publish",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
@@ -33,8 +33,8 @@
     "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
     "localize:extract": "lit-localize extract",
     "localize:build": "lit-localize build",
-    "gen-widget": "cwb gen-widget --propertiesFile uidInput.json --webComponentBundle dist/uid-input.bundle.min.js --outputDir uid_widget",
-    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInput.json --webComponentBundle dist/uid-input.bundle.min.js --outputDir assets"
+    "gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
+    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir assets"
   },
   "dependencies": {
     "@lit/localize": "^0.10.4",
@@ -89,7 +89,7 @@
       "no-use-before-define": [2, {"functions": false, "classes": false}],
       "@typescript-eslint/no-unused-vars": [
         "error"
-     ],
+      ],
       "import/no-unresolved": "off",
       "import/extensions": [
         "error",

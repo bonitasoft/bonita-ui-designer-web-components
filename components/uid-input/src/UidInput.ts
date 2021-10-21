@@ -1,48 +1,17 @@
-import {css, html, LitElement} from 'lit';
-import {property} from 'lit/decorators.js';
-import {msg, localized, configureLocalization} from '@lit/localize';
-import {sourceLocale, targetLocales} from './locales/locale-codes.js';
-const template_es = import('./locales/es-ES.js');
-const template_fr = import('./locales/fr.js');
-const template_ja = import('./locales/ja.js');
-const template_pt = import('./locales/pt-BR.js');
-
-export const {setLocale} = configureLocalization({
-  sourceLocale,
-  targetLocales,
-  loadLocale: (locale) => {
-    switch (locale) {
-      case 'es-ES': {
-        return template_es;
-      }
-      case 'fr': {
-        return template_fr;
-      }
-      case 'ja': {
-        return template_ja;
-      }
-      case 'pt-BR': {
-        return template_pt;
-      }
-      default: {
-        // should not happen
-        return template_fr;
-      }
-  }}
-});
+import {CSSResultGroup,TemplateResult, html} from 'lit';
+import {property} from 'lit/decorators.js';// eslint-disable-line
+import {msg} from '@lit/localize';
+import {targetLocales} from './locales/locale-codes.js';
+import {UidElement, setLocale} from "./uid-element";
 
 /**
  * Input field, optionally with a label, where the user can enter information
  */
-@localized()
-export class UidInput extends LitElement {
+export class UidInput extends UidElement {
 
   static readonly LABEL_DEFAULT = "Default label";
 
   private name = "uidInput";
-
-  @property({ attribute: 'lang', type: String, reflect: true })
-  lang: string = "en";
 
   // Common properties below are handled by the div above uid-input:
 
@@ -61,9 +30,15 @@ export class UidInput extends LitElement {
   @property({ attribute: 'required', type: Boolean, reflect: true })
   required: boolean = false;
 
+  /**
+   * Specifies the minimum length of textual data (strings)
+   */
   @property({ attribute: 'min-length', type: Number, reflect: true })
   minLength: number | undefined;
 
+  /**
+   * Specifies the maximum length of textual data (strings)
+   */
   @property({ attribute: 'max-length', type: Number, reflect: true })
   maxLength: number | undefined;
 
@@ -94,84 +69,57 @@ export class UidInput extends LitElement {
   @property({ attribute: 'type', type: String, reflect: true })
   type: string = "text";
 
+  /**
+   * Specifies the minimum value of numerical input type
+   */
   @property({ attribute: 'min', type: Number, reflect: true })
   min: number | undefined;
 
+  /**
+   * Specifies the maximum value of numerical input type
+   */
   @property({ attribute: 'max', type: Number, reflect: true })
   max: number | undefined;
 
   @property({ attribute: 'step', type: Number, reflect: true })
   step: number = 1;
 
-  async attributeChangedCallback(name: string, old: string|null, value: string|null) {
+  async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
-      // @ts-ignore
-      if (targetLocales.includes(this.lang)) {
-        setLocale(this.lang).then(() => {
+      if (targetLocales.includes(super.lang)) {
+        setLocale(super.lang).then(() => {
           if (this.label === UidInput.LABEL_DEFAULT) {
             this.label = msg("Default label"); // Need real string for lit-translate
           }
-        }).catch((e) => {
-          console.log('setLocale() error ! ', e);
-        });
+        })
       }
     }
   }
 
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        font-family: sans-serif;
-        text-align: left;
-      }
-
-      .input-elem {
-        font-size: 14px;
-        height: 20px;
-      }
-
-      .label-elem {
-        font-size: 14px;
-        font-weight: 700;
-        padding-left: 0
-      }
-
-      /* Add a red star after required inputs */
-      .label-required:after {
-        content: " *";
-        color: #C00;
-      }
-
-      .text-right {
-        text-align: right;
-      }
-
-    `;
+  static get styles(): CSSResultGroup {
+    return super.styles;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
-      <div id="${this.id}" class="container">
-        <div class="row">
+      <div id="${this.id}" class="container ${this.getContainerCssClass()}">
           ${this.getLabel()}
           <input
-            class="${this.getInputCssClass()}"
             id="input"
             name="${this.name}"
             type="${this.type}"
             min="${this.min}"
             max="${this.max}"
             step="${this.step}"
-            value="${this.value}"
+            .value="${this.value}"
             @input=${(e: any) => this.valueChanged(e)}
             placeholder="${this.placeholder}"
             minlength="${this.minLength}"
             maxlength="${this.maxLength}"
             ?readonly="${this.readOnly}"
+            ?required="${this.required}"
           />
-        </div>
       </div>
     `;
   }
@@ -182,31 +130,36 @@ export class UidInput extends LitElement {
     }
     return html`
       <label
+        style="${this.getLabelCss()}"
         class="${this.getLabelCssClass()}"
         for="input"
       >${this.label}</label>
     `
   }
 
-  private getLabelCssClass() : string {
-    return (this.required ? "label-required " : "") + "label-elem form-horizontal col-form-label " +
-      (!this.labelHidden && this.labelPosition === 'left' ? "col-" + this.labelWidth + " text-right" : "col-12");
+  private getContainerCssClass() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
   }
 
-  private getInputCssClass() : string {
-    return "form-control input-elem col";
+  private getLabelCssClass() : string {
+    return `${this.required ? "required" : ""}
+            ${!this.labelHidden && this.labelPosition === 'left' ? " left" : ""}`;
+  }
+
+  private getLabelCss() : string {
+    return !this.labelHidden && this.labelPosition === 'left' ? ` flex-basis: ${this.labelWidth*100/12}%;` : "";
   }
 
   private valueChanged(e: any) {
-    let inputElem = this.shadowRoot!.querySelector("input") as HTMLInputElement;
+    const inputElem = super.shadowRoot!.querySelector("input") as HTMLInputElement;
     if (!inputElem.checkValidity()) {
       inputElem.style.borderColor = "red";
     } else {
       inputElem.style.borderColor = "";
     }
 
-    let value = e.target.value;
-    this.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
+    const { target: {value} } = e;
+    super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 
 }
