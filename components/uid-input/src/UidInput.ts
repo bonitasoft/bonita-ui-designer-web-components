@@ -1,17 +1,16 @@
-import {CSSResultGroup,TemplateResult, html} from 'lit';
-import {property} from 'lit/decorators.js';// eslint-disable-line
-import {msg} from '@lit/localize';
-import {targetLocales} from './locales/locale-codes.js';
-import {UidElement, setLocale} from "./uid-element";
+import { CSSResultGroup, TemplateResult, html } from 'lit';
+import { property } from 'lit/decorators.js'; // eslint-disable-line
+import { msg } from '@lit/localize';
+import { targetLocales } from './locales/locale-codes';
+import { UidElement, setLocale } from './uid-element';
 
 /**
  * Input field, optionally with a label, where the user can enter information
  */
 export class UidInput extends UidElement {
+  static readonly LABEL_DEFAULT = 'Default label';
 
-  static readonly LABEL_DEFAULT = "Default label";
-
-  private name = "uidInput";
+  private name = 'uidInput';
 
   // Common properties below are handled by the div above uid-input:
 
@@ -25,7 +24,7 @@ export class UidInput extends UidElement {
   // private hidden: boolean = false;
 
   @property({ attribute: 'id', type: String, reflect: true })
-  id: string = "";
+  id: string = '';
 
   @property({ attribute: 'required', type: Boolean, reflect: true })
   required: boolean = false;
@@ -55,19 +54,19 @@ export class UidInput extends UidElement {
    * Position of the label
    */
   @property({ attribute: 'label-position', type: String, reflect: true })
-  labelPosition: string = "top";
+  labelPosition: string = 'top';
 
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
 
   @property({ attribute: 'placeholder', type: String, reflect: true })
-  placeholder: string = "";
+  placeholder: string = '';
 
   @property({ attribute: 'value', type: String, reflect: true })
-  value: string = "";
+  value: string = '';
 
   @property({ attribute: 'type', type: String, reflect: true })
-  type: string = "text";
+  type: string = 'text';
 
   /**
    * Specifies the minimum value of numerical input type
@@ -84,15 +83,19 @@ export class UidInput extends UidElement {
   @property({ attribute: 'step', type: Number, reflect: true })
   step: number = 1;
 
-  async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
+  async attributeChangedCallback(
+    name: string,
+    old: string | null,
+    value: string | null
+  ): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
       if (targetLocales.includes(super.lang)) {
         setLocale(super.lang).then(() => {
           if (this.label === UidInput.LABEL_DEFAULT) {
-            this.label = msg("Default label"); // Need real string for lit-translate
+            this.label = msg('Default label'); // Need real string for lit-translate
           }
-        })
+        });
       }
     }
   }
@@ -104,22 +107,23 @@ export class UidInput extends UidElement {
   render(): TemplateResult {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-          ${this.getLabel()}
-          <input
-            id="input"
-            name="${this.name}"
-            type="${this.type}"
-            min="${this.min}"
-            max="${this.max}"
-            step="${this.step}"
-            .value="${this.value}"
-            @input=${(e: any) => this.valueChanged(e)}
-            placeholder="${this.placeholder}"
-            minlength="${this.minLength}"
-            maxlength="${this.maxLength}"
-            ?readonly="${this.readOnly}"
-            ?required="${this.required}"
-          />
+        ${this.getLabel()}
+        <input
+          part="input"
+          id="input"
+          name="${this.name}"
+          type="${this.type}"
+          min="${this.min}"
+          max="${this.max}"
+          step="${this.step}"
+          .value="${this.value}"
+          @input=${(e: any) => this.valueChanged(e)}
+          placeholder="${this.placeholder}"
+          minlength="${this.minLength}"
+          maxlength="${this.maxLength}"
+          ?readonly="${this.readOnly}"
+          ?required="${this.required}"
+        />
       </div>
     `;
   }
@@ -130,36 +134,45 @@ export class UidInput extends UidElement {
     }
     return html`
       <label
+        part="label"
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass()}"
         for="input"
-      >${this.label}</label>
-    `
+        >${this.label}</label
+      >
+    `;
   }
 
-  private getContainerCssClass() : string {
-    return !this.labelHidden && this.labelPosition === 'left' ? "container-row" : "container-col";
+  private getContainerCssClass(): string {
+    return !this.labelHidden && this.labelPosition === 'left'
+      ? 'container-row'
+      : 'container-col';
   }
 
-  private getLabelCssClass() : string {
-    return `${this.required ? "required" : ""}
-            ${!this.labelHidden && this.labelPosition === 'left' ? " left" : ""}`;
+  private getLabelCssClass(): string {
+    return `${this.required ? 'required' : ''}
+            ${
+              !this.labelHidden && this.labelPosition === 'left' ? ' left' : ''
+            }`;
   }
 
-  private getLabelCss() : string {
-    return !this.labelHidden && this.labelPosition === 'left' ? ` flex-basis: ${this.labelWidth*100/12}%;` : "";
+  private getLabelCss(): string {
+    return !this.labelHidden && this.labelPosition === 'left'
+      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%;`
+      : '';
   }
 
   private valueChanged(e: any) {
-    const inputElem = super.shadowRoot!.querySelector("input") as HTMLInputElement;
+    const inputElem = super.shadowRoot!.querySelector(
+      'input'
+    ) as HTMLInputElement;
     if (!inputElem.checkValidity()) {
-      inputElem.style.borderColor = "red";
+      inputElem.style.borderColor = 'red';
     } else {
-      inputElem.style.borderColor = "";
+      inputElem.style.borderColor = '';
     }
 
     const { target: {value} } = e;
     super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
-
 }
