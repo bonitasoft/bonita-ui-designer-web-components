@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import '../src/uid-input.js';
 import { ifDefined } from 'lit-html/directives/if-defined'; // eslint-disable-line
-//TEST
+
 export default {
   title: 'UidInput',
   component: 'uid-input',
