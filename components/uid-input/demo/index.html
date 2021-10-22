@@ -4,8 +4,63 @@
   <title>Hello uid-input!</title>
   <meta charset="utf-8">
   <style>
+    :root {
+      --input-border: #8b8a8b;
+      --input-focus-h: 245;
+      --input-focus-s: 100%;
+      --input-focus-l: 42%;
+    }
+
     body {
       background: #fafafa;
+    }
+
+    uid-input::part(input) {
+      border: 1px solid #B0CFE0;
+      border-radius: 2px;
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+    }
+
+    uid-input::part(input):focus {
+      outline: none !important;
+      box-shadow: 0 0 5px #B0CFE0;
+      border:1px solid #B0CFE0;
+    }
+
+    uid-input::part(input):invalid {
+      color: red;
+    }
+
+    :host([invalid]) [part="input-field"] {
+      color: red;
+    }
+
+    uid-input::part(input)[readonly] {
+      --input-border: #ccc;
+      background-color: #eee;
+      cursor: not-allowed;
+    }
+
+    uid-input::part(input)[type="button"],
+    uid-input::part(input)[type="submit"] {
+      -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+      -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+      box-shadow: inset 0px 1px 0px 0px #3985B1;
+      background-color: #216288;
+      border: 1px solid #17445E;
+      cursor: pointer;
+      color: #FFFFFF;
+      text-decoration: none;
+      font: 12px Arial, Helvetica, sans-serif;
+    }
+
+    uid-input::part(input)[type="button"]:hover,
+    uid-input::part(input)[type="submit"]:hover {
+      background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+      background-color: #28739E;
     }
   </style>
 </head>
@@ -19,9 +74,11 @@
     render(
       html`
         <uid-input placeholder="Type a value" type="number" value="10" min="1" max="10"
-                   min-length="3" max-length="20" label-position="top" label-width="5" lang="fr" required></uid-input>
-        <uid-input label="My label" placeholder="Type a value" type="text" value="10" min="1" max="100"
+                   label-position="top" label-width="5" lang="fr" required></uid-input>
+        <uid-input label="My label" placeholder="Type a value" type="text" value="10" max="100"
                    min-length="3" max-length="20" label-position="left" label-width="3" required></uid-input>
+        <uid-input label="My label" placeholder="Type a value" type="text" value="10"
+                   min-length="3" max-length="20" label-position="left" label-width="3" readonly></uid-input>
       `,
       document.querySelector('#demo')
     );
