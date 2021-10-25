@@ -1,18 +1,29 @@
 import { html, TemplateResult } from 'lit';
 import '../src/uid-text.js';
+import { ifDefined } from 'lit-html/directives/if-defined.js'; // eslint-disable-line
 
 export default {
   title: 'UidText',
   component: 'uid-text',
   argTypes: {
+    id: { control: 'text' },
+    lang: {
+      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
+      control: 'radio',
+    },
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
-    text: { control: 'text' },
     labelPosition: {
       options: ['top', 'left'],
       control: 'radio',
     },
     labelWidth: { control: 'number' },
+    text: { control: 'text' },
+    alignment: {
+      options: ['left', 'center', 'right'],
+      control: 'radio',
+    },
+    allowHtml: { control: 'boolean' },
   },
 };
 
@@ -23,6 +34,10 @@ interface Story<T> {
 }
 
 interface ArgTypes {
+  lang?: string;
+  alignment?: boolean;
+  allowHtml?: boolean;
+  id?: string;
   label?: string;
   labelHidden?: boolean;
   text?: string;
@@ -32,8 +47,10 @@ interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({
-  label = 'default',
-  labelHidden = false,
+  lang,
+  id,
+  label,
+  labelHidden,
   text = 'Lorem Ipsum is simply dummy text of the printing ' +
     "and typesetting industry. Lorem Ipsum has been the industry's *" +
     'standard dummy text ever since the 1500s, when an unknown printer ' +
@@ -43,16 +60,22 @@ const Template: Story<ArgTypes> = ({
     ' with the release of Letraset sheets containing Lorem Ipsum passages, ' +
     'and more recently with desktop publishing software like Aldus PageMaker ' +
     'including versions of Lorem Ipsum.',
-  labelPosition = 'top',
+  alignment,
+  allowHtml,
+  labelPosition,
   labelWidth,
-  slot,
+  slot
 }: ArgTypes) => html`
   <uid-text
-    label=${label}
-    text=${text}
-    label-position=${labelPosition}
-    label-width=${labelWidth}
-    ${getLabelHidden(labelHidden)}
+    alignment=${ifDefined(alignment)}
+    lang=${ifDefined(lang)}
+    id=${ifDefined(id)}
+    label=${ifDefined(label)}
+    text=${ifDefined(text)}
+    label-position=${ifDefined(labelPosition)}
+    label-width=${ifDefined(labelWidth)}
+    ?allow-html=${allowHtml}
+    ?label-hidden=${labelHidden}
   >
     ${slot}
   </uid-text>
@@ -60,16 +83,19 @@ const Template: Story<ArgTypes> = ({
 
 export const Regular = Template.bind({});
 
-export const CustomLabel = Template.bind({});
-CustomLabel.args = {
-  label: 'My custom label',
-  labelPosition: 'left',
-  labelWidth: 6,
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  labelHidden: false,
 };
 
-export const CustomValue = Template.bind({});
-CustomValue.args = {
-  text: 'new value',
+export const WithHtml = Template.bind({});
+WithHtml.args = {
+  text: 'A text which <br> allow <b>HTML</b>.',
+};
+
+export const French = Template.bind({});
+French.args = {
+  lang: 'fr',
 };
 
 export const SlottedContent = Template.bind({});
@@ -79,10 +105,3 @@ SlottedContent.args = {
 SlottedContent.argTypes = {
   slot: { table: { disable: true } },
 };
-
-function getLabelHidden(labelHidden: boolean) {
-  if (!labelHidden) {
-    return html``;
-  }
-  return html`label-hidden`;
-}
