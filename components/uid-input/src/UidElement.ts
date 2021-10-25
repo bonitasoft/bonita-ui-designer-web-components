@@ -1,6 +1,6 @@
 import { LitElement, css, CSSResultGroup } from 'lit';
 import {property} from 'lit/decorators.js';// eslint-disable-line
-import {localized, configureLocalization} from '@lit/localize';
+import {configureLocalization} from '@lit/localize';
 import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 
 const templateEs = import('./locales/es-ES.js');

@@ -1,5 +1,5 @@
 import {CSSResultGroup,TemplateResult, html} from 'lit';
-import {property} from 'lit/decorators.js';// eslint-disable-line
+import {property} from 'lit/decorators.js';
 import {LabeledElement} from "./LabeledElement";
 
 /**

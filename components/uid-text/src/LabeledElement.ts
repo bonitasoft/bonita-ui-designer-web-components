@@ -4,7 +4,7 @@ import {property} from "lit/decorators.js";
 import {allLocales} from "./locales/locale-codes";
 import {msg} from "@lit/localize";
 
-export abstract class LabelElement extends UidElement {
+export abstract class LabeledElement extends UidElement {
 
   static readonly LABEL_DEFAULT = "Default label";
 
@@ -15,7 +15,7 @@ export abstract class LabelElement extends UidElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = LabelElement.LABEL_DEFAULT;
+  label: string = LabeledElement.LABEL_DEFAULT;
 
   /**
    * Position of the label
@@ -25,6 +25,12 @@ export abstract class LabelElement extends UidElement {
 
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
+
+
+  protected constructor(labelHidden: boolean) {
+    super();
+    this.labelHidden = labelHidden;
+  }
 
   async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
     super.attributeChangedCallback(name, old, value);
@@ -56,7 +62,7 @@ export abstract class LabelElement extends UidElement {
       <label
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass(required)}"
-        for="${forStr}"
+        ${LabeledElement.getFor(forStr)}
       >${this.label}</label>
     `
   }
@@ -74,9 +80,11 @@ export abstract class LabelElement extends UidElement {
     return !this.labelHidden && this.labelPosition === 'left' ? ` flex-basis: ${this.labelWidth*100/12}%;` : "";
   }
 
-  private getFor(forStr: string) {
+  private static getFor(forStr: string) {
     if (forStr) {
-      return html`for="${forStr}"`
+      return html`for="${forStr}"`;
     }
+    return html``;
   }
+
 }

@@ -1,14 +1,12 @@
 import { css, html } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { msg } from '@lit/localize';
-import {allLocales} from './locales/locale-codes.js';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
-import {LabelElement} from "./LabelElement";
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import {LabeledElement} from "./LabeledElement";
 
 /**
  * Text field, optionally with a label, where the user can display text
  */
-export class UidText extends LabelElement {
+export class UidText extends LabeledElement {
 
   // Common properties below are handled by the div above uid-text:
 
@@ -24,18 +22,6 @@ export class UidText extends LabelElement {
   @property({ attribute: 'id', type: String, reflect: true })
   id: string = '';
 
-  @property({ attribute: 'label-hidden', type: Boolean, reflect: true })
-  labelHidden: boolean = false;
-
-  @property({ attribute: 'label', type: String, reflect: true })
-  label: string = UidText.LABEL_DEFAULT;
-
-  @property({ attribute: 'label-position', type: String, reflect: true })
-  labelPosition: string = 'top';
-
-  @property({ attribute: 'label-width', type: String, reflect: true })
-  labelWidth: number = 4;
-
   @property({ attribute: 'text', type: String, reflect: true })
   text: string = '';
 
@@ -46,6 +32,11 @@ export class UidText extends LabelElement {
 
   @property({ attribute: 'alignment', type: String, reflect: true })
   alignment: string = 'left';
+
+
+  constructor() {
+    super(true);
+  }
 
   static get styles() {
     return [
