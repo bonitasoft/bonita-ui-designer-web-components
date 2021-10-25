@@ -34,8 +34,7 @@ export const {setLocale} = configureLocalization({
   }}
 });
 
-@localized()
-export class UidElement extends LitElement {
+export abstract class UidElement extends LitElement {
 
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: supportedLang = "en" as supportedLang;

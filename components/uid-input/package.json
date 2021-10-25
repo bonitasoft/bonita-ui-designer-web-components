@@ -1,7 +1,7 @@
 {
   "name": "@bonitasoft/uid-input",
   "description": "An input with label",
-  "homepage": "https://github.com/bonitasoft/web-components/open-wc/uid-input#readme",
+  "homepage": "https://github.com/bonitasoft/web-components/components/uid-input#readme",
   "license": "GPLv2",
   "version": "1.0.0",
   "main": "dist/src/index.js",

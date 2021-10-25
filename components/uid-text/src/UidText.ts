@@ -1,15 +1,14 @@
 import { css, html } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
 import { msg } from '@lit/localize';
-import { targetLocales } from './locales/locale-codes.js';
+import {allLocales} from './locales/locale-codes.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
-import { UidElement, setLocale } from './uid-element';
+import {LabelElement} from "./LabelElement";
 
 /**
  * Text field, optionally with a label, where the user can display text
  */
-export class UidText extends UidElement {
-  static readonly LABEL_DEFAULT = 'Default label';
+export class UidText extends LabelElement {
 
   // Common properties below are handled by the div above uid-text:
 
@@ -48,27 +47,9 @@ export class UidText extends UidElement {
   @property({ attribute: 'alignment', type: String, reflect: true })
   alignment: string = 'left';
 
-  async attributeChangedCallback(
-    name: string,
-    old: string | null,
-    value: string | null
-  ) {
-    super.attributeChangedCallback(name, old, value);
-    if (name === 'lang') {
-      // @ts-ignore
-      if (targetLocales.includes(this.lang)) {
-        setLocale(super.lang).then(() => {
-          if (this.label === UidText.LABEL_DEFAULT) {
-            this.label = msg('Default label'); // Need real string for lit-translate
-          }
-        });
-      }
-    }
-  }
-
   static get styles() {
     return [
-      UidElement.styles,
+      super.styles,
       css`
         .p {
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -86,7 +67,7 @@ export class UidText extends UidElement {
   render() {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-        ${this.getLabel()}
+        ${super.getLabel("", false)}
         <p style="${this.getParagraphCss()}">${this.getTextValue()}</p>
       </div>
     `;
@@ -99,34 +80,8 @@ export class UidText extends UidElement {
     return html`${this.text}`;
   }
 
-  private getLabel() {
-    if (this.labelHidden) {
-      return html``;
-    }
-    return html`
-      <label style="${this.getLabelCss()}" class="${this.getLabelCssClass()}"
-        >${this.label}</label
-      >
-    `;
-  }
-
-  private getContainerCssClass(): string {
-    return !this.labelHidden && this.labelPosition === 'left'
-      ? 'container-row'
-      : 'container-col';
-  }
-
   private getParagraphCss(): string {
     return `text-align: ${this.alignment};`;
   }
 
-  private getLabelCssClass(): string {
-    return !this.labelHidden && this.labelPosition === 'left' ? 'left' : '';
-  }
-
-  private getLabelCss(): string {
-    return !this.labelHidden && this.labelPosition === 'left'
-      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%; flex-shrink: 0;`
-      : '';
-  }
 }
