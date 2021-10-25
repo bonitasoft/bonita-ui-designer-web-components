@@ -7,6 +7,10 @@ export default {
   component: 'uid-input',
   argTypes: {
     id: { control: 'text' },
+    lang: {
+      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
+      control: 'radio',
+    },
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
     labelPosition: {
@@ -14,23 +18,19 @@ export default {
       control: 'radio',
     },
     labelWidth: { control: 'number' },
-    lang: {
-      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
+    value: { control: 'text' },
+    type: {
+      options: ['text', 'number', 'email', 'password'],
       control: 'radio',
     },
     min: { control: 'number' },
     max: { control: 'number' },
+    step: { control: 'number' },
     minLength: { control: 'number' },
     maxLength: { control: 'number' },
     placeHolder: { control: 'text' },
     readOnly: { control: 'boolean' },
     required: { control: 'boolean' },
-    step: { control: 'number' },
-    type: {
-      options: ['text', 'number', 'email', 'password'],
-      control: 'radio',
-    },
-    value: { control: 'text' },
   },
 };
 

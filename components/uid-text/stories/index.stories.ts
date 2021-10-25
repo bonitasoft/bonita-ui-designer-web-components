@@ -6,12 +6,11 @@ export default {
   title: 'UidText',
   component: 'uid-text',
   argTypes: {
-    alignment: {
-      options: ['left', 'center', 'right'],
+    id: { control: 'text' },
+    lang: {
+      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
       control: 'radio',
     },
-    allowHtml: { control: 'boolean' },
-    id: { control: 'text' },
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
     labelPosition: {
@@ -19,11 +18,12 @@ export default {
       control: 'radio',
     },
     labelWidth: { control: 'number' },
-    lang: {
-      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
+    text: { control: 'text' },
+    alignment: {
+      options: ['left', 'center', 'right'],
       control: 'radio',
     },
-    text: { control: 'text' },
+    allowHtml: { control: 'boolean' },
   },
 };
 
