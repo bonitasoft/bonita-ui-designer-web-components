@@ -1,7 +1,7 @@
 import {CSSResultGroup,TemplateResult, html} from 'lit';
 import {property} from 'lit/decorators.js';// eslint-disable-line
 import {msg} from '@lit/localize';
-import {targetLocales} from './locales/locale-codes.js';
+import {allLocales} from './locales/locale-codes.js';
 import {UidElement, setLocale} from "./uid-element";
 
 /**
@@ -12,6 +12,8 @@ export class UidInput extends UidElement {
   static readonly LABEL_DEFAULT = "Default label";
 
   private name = "uidInput";
+  private labelDefault: boolean = true;
+  private internalLabelUpdate: boolean = false;
 
   // Common properties below are handled by the div above uid-input:
 
@@ -87,12 +89,21 @@ export class UidInput extends UidElement {
   async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
-      if (targetLocales.includes(super.lang)) {
+      if (allLocales.includes(super.lang)) {
         setLocale(super.lang).then(() => {
-          if (this.label === UidInput.LABEL_DEFAULT) {
+          if (this.labelDefault) {
             this.label = msg("Default label"); // Need real string for lit-translate
+            this.internalLabelUpdate = true;
           }
         })
+      }
+    }
+    if ((name === 'label') && old) {
+      if (this.internalLabelUpdate) {
+        this.labelDefault = true;
+        this.internalLabelUpdate = false;
+      } else {
+        this.labelDefault = false;
       }
     }
   }

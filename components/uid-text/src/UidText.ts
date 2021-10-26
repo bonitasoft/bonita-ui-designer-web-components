@@ -1,7 +1,7 @@
 import { css, html } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
 import { msg } from '@lit/localize';
-import { targetLocales } from './locales/locale-codes.js';
+import { allLocales } from './locales/locale-codes.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
 import { UidElement, setLocale } from './uid-element';
 
@@ -10,6 +10,8 @@ import { UidElement, setLocale } from './uid-element';
  */
 export class UidText extends UidElement {
   static readonly LABEL_DEFAULT = 'Default label';
+  private labelDefault: boolean = true;
+  private internalLabelUpdate: boolean = false;
 
   // Common properties below are handled by the div above uid-text:
 
@@ -48,20 +50,24 @@ export class UidText extends UidElement {
   @property({ attribute: 'alignment', type: String, reflect: true })
   alignment: string = 'left';
 
-  async attributeChangedCallback(
-    name: string,
-    old: string | null,
-    value: string | null
-  ) {
+  async attributeChangedCallback(name: string, old: string|null, value: string|null): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
-      // @ts-ignore
-      if (targetLocales.includes(this.lang)) {
+      if (allLocales.includes(super.lang)) {
         setLocale(super.lang).then(() => {
-          if (this.label === UidText.LABEL_DEFAULT) {
-            this.label = msg('Default label'); // Need real string for lit-translate
+          if (this.labelDefault) {
+            this.label = msg("Default label"); // Need real string for lit-translate
+            this.internalLabelUpdate = true;
           }
-        });
+        })
+      }
+    }
+    if ((name === 'label') && old) {
+      if (this.internalLabelUpdate) {
+        this.labelDefault = true;
+        this.internalLabelUpdate = false;
+      } else {
+        this.labelDefault = false;
       }
     }
   }
