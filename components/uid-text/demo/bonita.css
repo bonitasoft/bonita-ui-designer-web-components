@@ -1,0 +1,125 @@
+:root {
+  /*Brand colors*/
+  --brand-primary: #2c3e50;
+  --brand-success: #008000;
+  --brand-info: #033c73;
+  --brand-warning: #dd5600;
+  --brand-danger: #c71c22;
+
+  --gray-light: #efeeee;
+  --white: #ffffff;
+
+  /*Text*/
+  --text-color: var(--brand-primary);
+
+  --headings-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --headings-line-height: 1.2;
+
+  --state-success-text: #468847;
+  --state-info-text: #3a87ad;
+  --state-warning-text: #c09853;
+  --state-danger-text: #b94a48;
+
+  --primary-disabled-bg: #e9ecef;
+  --primary-disabled-border: #ced4da;
+  --primary-disabled-color: #ffffff;
+
+  /*Components*/
+  --padding-large-vertical: 14px;
+
+  /*Input*/
+  --input-color: var(--text-color);
+  --input-height-large: 54px;
+
+  /*Modals*/
+  --modal-inner-padding: 20px;
+
+  /*Buttons*/
+  --btn-default-color: var(--text-color);
+  --btn-default-border: rgba(0, 0, 0, 0.1);
+
+  --btn-primary-border: var(--brand-primary);
+  --btn-success-border: var(--brand-success);
+  --btn-info-border: var(--brand-info);
+  --btn-warning-border: var(--brand-warning);
+  --btn-danger-border: var(--brand-danger);
+
+  --btn-primary-disabled-bg: var(--primary-disabled-bg);
+  --btn-primary-disabled-border: var(--btn-primary-disabled-bg);
+  --btn-primary-disabled-color: var(--primary-disabled-color);
+
+  /*Navbar*/
+  --navbar-default-color: #dddddd;
+  --navbar-default-bg: var(--brand-primary);
+  --navbar-default-link-color: var(--white);
+  --navbar-default-brand-hover-color: var(--white);
+  --navbar-default-link-hover-color: var(--white);
+  --navbar-default-link-hover-bg: #1a242f;
+  --navbar-default-link-active-bg: #1a242f;
+  --navbar-default-link-active-color: var(--white);
+  --navbar-default-link-disabled-color: #dddddd;
+  --navbar-default-toggle-hover-bg: #1a242f;
+  --navbar-default-toggle-icon-bar-bg: var(--white);
+  --navbar-default-toggle-border-color: #1a242f;
+
+  --navbar-inverse-bg: #033c73;
+  --navbar-inverse-color: var(--white);
+  --navbar-inverse-link-color: var(--white);
+
+  --navbar-inverse-link-hover-bg: #022f5a;
+  --navbar-inverse-link-active-bg: #022f5a;
+  --navbar-inverse-link-disabled-color: #cccccc;
+
+  --navbar-inverse-toggle-border-color: #022f5a;
+  --navbar-inverse-toggle-hover-bg: #022f5a;
+  --navbar-inverse-toggle-icon-bar-bg: var(--white);
+
+  /*Dropdown*/
+  --dropdown-link-hover-color: var(--white);
+  --dropdown-link-hover-bg: #2c3e50;
+
+  /*Pagination*/
+  --pagination-color: var(--white);
+  --pagination-bg: var(--brand-primary);
+  --pagination-border: transparent;
+
+  --pagination-hover-color: var(--pagination-color);
+  --pagination-hover-bg: darken(var(--brand-primary), 15%);
+  --pagination-hover-border: transparent;
+
+  --pagination-active-bg: darken(var(--brand-primary), 15%);
+  --pagination-active-border: transparent;
+
+  --pagination-disabled-color: #ecf0f1;
+  --pagination-disabled-bg: #476481;
+  --pagination-disabled-border: transparent;
+
+  /*Pager*/
+  --pager-color: var(--pagination-color);
+  --pager-bg: var(--brand-primary);
+  --pager-hover-color: var(--pagination-hover-color);
+
+  /*Badge*/
+  --badge-bg: var(--brand-primary);
+
+  /*Panel*/
+  --panel-border-color: #dddddd;
+  --panel-primary-border: var(--panel-border-color);
+  --panel-primary-text: #fff;
+  --panel-success-border: var(--panel-border-color);
+  --panel-success-text: var(--panel-primary-text);
+  --panel-info-border: var(--panel-border-color);
+  --panel-info-text: var(--panel-primary-text);
+  --panel-warning-border: var(--panel-border-color);
+  --panel-warning-text: var(--panel-primary-text);
+  --panel-danger-border: var(--panel-border-color);
+  --panel-danger-text: var(--panel-primary-text);
+
+  --panel-success-heading-bg: var(--brand-success);
+  --panel-info-heading-bg: var(--brand-info);
+  --panel-warning-heading-bg: var(--brand-warning);
+  --panel-danger-heading-bg: var(--brand-danger);
+
+  /*Glyphicons fonts*/
+  --icon-font-path: "./fonts/";
+}
