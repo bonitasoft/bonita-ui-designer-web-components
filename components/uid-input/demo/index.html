@@ -3,6 +3,7 @@
 <head>
   <title>Hello uid-input!</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="bonita.css">
   <style>
     :root {
       --input-border: #8b8a8b;
@@ -16,7 +17,8 @@
     }
 
     uid-input::part(input) {
-      border: 1px solid #B0CFE0;
+      color: var(--text-color);
+      border: 1px solid var(--input-color);
       border-radius: 2px;
       -webkit-transition: all 0.30s ease-in-out;
       -moz-transition: all 0.30s ease-in-out;
@@ -24,24 +26,40 @@
       -o-transition: all 0.30s ease-in-out;
     }
 
-    uid-input::part(input):focus {
+    uid-input::part(label),
+    uid-text::part(label),
+    uid-text::part(paragraph) {
+      color: var(--text-color);
+    }
+
+    uid-input::part(input){
       outline: none !important;
-      box-shadow: 0 0 5px #B0CFE0;
-      border:1px solid #B0CFE0;
     }
 
-    uid-input::part(input):invalid {
-      color: red;
+    uid-input::part(input):focus:valid:not(:read-only) {
+      box-shadow: 0 0 5px var(--input-color);
+      border: 1px solid var(--input-color);
     }
 
-    :host([invalid]) [part="input-field"] {
-      color: red;
+    uid-input::part(label):invalid,
+    uid-input::part(input):invalid{
+      color: var(--state-danger-text);
+      border:1px solid var(--state-danger-text);
     }
 
-    uid-input::part(input)[readonly] {
-      --input-border: #ccc;
-      background-color: #eee;
+    uid-input::part(label):invalid:focus,
+    uid-input::part(input):invalid:focus {
+      box-shadow: 0 0 5px var(--state-danger-text);
+    }
+
+    uid-input::part(input):read-only {
+      background-color: var(--primary-disabled-bg);
+      border-color: var(--primary-disabled-border);
       cursor: not-allowed;
+    }
+
+    uid-input::part(label)::after {
+      color: var(--state-danger-text);
     }
 
     uid-input::part(input)[type="button"],
@@ -62,26 +80,36 @@
       background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
       background-color: #28739E;
     }
+
+    .green-is-better>uid-input::part(input),
+    .green-is-better>uid-input::part(label) {
+      color: green !important;
+      border-color: green;
+    }
   </style>
 </head>
 <body>
-  <div id="demo"></div>
+<div id="demo"></div>
 
-  <script type="module">
-    import { html, render } from 'lit';
-    import '../dist/src/uid-input';
+<script type="module">
+  import {html, render} from 'lit';
+  import '../dist/src/uid-input';
 
-    render(
-      html`
-        <uid-input placeholder="Type a value" type="number" value="10" min="1" max="10"
-                   label-position="top" label-width="5" lang="fr" required></uid-input>
-        <uid-input label="My label" placeholder="Type a value" type="text" value="10" max="100"
+  render(
+    html`
+      <uid-input id="1" placeholder="Type a value" type="number" value="10" min="1" max="10"
+                 label-position="top" label-width="5" lang="fr" required></uid-input>
+      <uid-input id="2" label="My text label" placeholder="Type a value" type="text" value="10" max="100"
+                 min-length="3" max-length="20" label-position="left" label-width="3" required></uid-input>
+      <uid-input id="3" label="My readonly label" placeholder="Type a value" type="text" value="10"
+                 min-length="3" max-length="20" label-position="left" label-width="3" readonly></uid-input>
+      <div class="green-is-better">
+        <uid-input id="2" label="My Green label" placeholder="Type a value" type="text" value="10" max="100"
                    min-length="3" max-length="20" label-position="left" label-width="3" required></uid-input>
-        <uid-input label="My label" placeholder="Type a value" type="text" value="10"
-                   min-length="3" max-length="20" label-position="left" label-width="3" readonly></uid-input>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
+      </div>
+    `,
+    document.querySelector('#demo')
+  );
+</script>
 </body>
 </html>
