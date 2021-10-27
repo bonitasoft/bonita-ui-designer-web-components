@@ -1,6 +1,6 @@
 import { LitElement, css, CSSResultGroup } from 'lit';
 import {property} from 'lit/decorators.js';// eslint-disable-line
-import {localized, configureLocalization} from '@lit/localize';
+import {configureLocalization} from '@lit/localize';
 import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 
 const templateEs = import('./locales/es-ES.js');
@@ -34,8 +34,7 @@ export const {setLocale} = configureLocalization({
   }}
 });
 
-@localized()
-export class UidElement extends LitElement {
+export abstract class UidElement extends LitElement {
 
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: supportedLang = "en" as supportedLang;

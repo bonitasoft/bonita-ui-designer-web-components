@@ -1,14 +1,11 @@
 import { CSSResultGroup, TemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { msg } from '@lit/localize';
-import { targetLocales } from './locales/locale-codes';
-import { UidElement, setLocale } from './uid-element';
+import {LabeledElement} from "./LabeledElement";
 
 /**
  * Input field, optionally with a label, where the user can enter information
  */
-export class UidInput extends UidElement {
-  static readonly LABEL_DEFAULT = 'Default label';
+export class UidInput extends LabeledElement {
 
   private name = 'uidInput';
 
@@ -44,21 +41,6 @@ export class UidInput extends UidElement {
   @property({ attribute: 'readonly', type: Boolean, reflect: true })
   readOnly: boolean = false;
 
-  @property({ attribute: 'label-hidden', type: Boolean, reflect: true })
-  labelHidden: boolean = false;
-
-  @property({ attribute: 'label', type: String, reflect: true })
-  label: string = UidInput.LABEL_DEFAULT;
-
-  /**
-   * Position of the label
-   */
-  @property({ attribute: 'label-position', type: String, reflect: true })
-  labelPosition: string = 'top';
-
-  @property({ attribute: 'label-width', type: Number, reflect: true })
-  labelWidth: number = 4;
-
   @property({ attribute: 'placeholder', type: String, reflect: true })
   placeholder: string = '';
 
@@ -83,23 +65,6 @@ export class UidInput extends UidElement {
   @property({ attribute: 'step', type: Number, reflect: true })
   step: number = 1;
 
-  async attributeChangedCallback(
-    name: string,
-    old: string | null,
-    value: string | null
-  ): Promise<void> {
-    super.attributeChangedCallback(name, old, value);
-    if (name === 'lang') {
-      if (targetLocales.includes(super.lang)) {
-        setLocale(super.lang).then(() => {
-          if (this.label === UidInput.LABEL_DEFAULT) {
-            this.label = msg('Default label'); // Need real string for lit-translate
-          }
-        });
-      }
-    }
-  }
-
   static get styles(): CSSResultGroup {
     return super.styles;
   }
@@ -107,7 +72,7 @@ export class UidInput extends UidElement {
   render(): TemplateResult {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-        ${this.getLabel()}
+        ${super.getLabel("input", this.required)}
         <input
           part="input"
           id="input"
@@ -128,42 +93,8 @@ export class UidInput extends UidElement {
     `;
   }
 
-  private getLabel() {
-    if (this.labelHidden) {
-      return html``;
-    }
-    return html`
-      <label
-        part="label"
-        style="${this.getLabelCss()}"
-        class="${this.getLabelCssClass()}"
-        for="input"
-        >${this.label}</label
-      >
-    `;
-  }
-
-  private getContainerCssClass(): string {
-    return !this.labelHidden && this.labelPosition === 'left'
-      ? 'container-row'
-      : 'container-col';
-  }
-
-  private getLabelCssClass(): string {
-    return `${this.required ? 'required' : ''}
-            ${!this.labelHidden && this.labelPosition === 'left' ? ' left' : ''}`;
-  }
-
-  private getLabelCss(): string {
-    return !this.labelHidden && this.labelPosition === 'left'
-      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%;`
-      : '';
-  }
-
   private valueChanged(e: any) {
-    const inputElem = super.shadowRoot!.querySelector(
-      'input'
-    ) as HTMLInputElement;
+    const inputElem = super.shadowRoot!.querySelector('input') as HTMLInputElement;
     if (!inputElem.checkValidity()) {
       inputElem.style.borderColor = 'red';
     } else {
