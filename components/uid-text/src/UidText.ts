@@ -1,9 +1,9 @@
-import { css, html } from 'lit';
-import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { msg } from '@lit/localize';
-import { targetLocales } from './locales/locale-codes.js';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
-import { UidElement, setLocale } from './uid-element';
+import {css, html} from 'lit';
+import {property} from 'lit/decorators.js'; // eslint-disable-line
+import {msg} from '@lit/localize';
+import {targetLocales} from './locales/locale-codes.js';
+import {unsafeHTML} from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
+import {UidElement, setLocale} from './uid-element';
 
 /**
  * Text field, optionally with a label, where the user can display text
@@ -87,7 +87,7 @@ export class UidText extends UidElement {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
         ${this.getLabel()}
-        <p style="${this.getParagraphCss()}">${this.getTextValue()}</p>
+        <p part="paragraph" style="${this.getParagraphCss()}">${this.getTextValue()}</p>
       </div>
     `;
   }
@@ -104,7 +104,7 @@ export class UidText extends UidElement {
       return html``;
     }
     return html`
-      <label style="${this.getLabelCss()}" class="${this.getLabelCssClass()}"
+      <label part="label" style="${this.getLabelCss()}" class="${this.getLabelCssClass()}"
         >${this.label}</label
       >
     `;
