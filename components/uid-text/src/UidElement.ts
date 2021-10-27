@@ -1,19 +1,19 @@
 import { LitElement, css, CSSResultGroup } from 'lit';
-import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { localized, configureLocalization } from '@lit/localize';
-import { sourceLocale, targetLocales } from './locales/locale-codes.js';
+import {property} from 'lit/decorators.js';// eslint-disable-line
+import {configureLocalization} from '@lit/localize';
+import {sourceLocale, targetLocales} from './locales/locale-codes.js';
 
 const templateEs = import('./locales/es-ES.js');
 const templateFr = import('./locales/fr.js');
 const templateJa = import('./locales/ja.js');
 const templatePt = import('./locales/pt-BR.js');
 
-export type supportedLang = 'es-ES' | 'fr' | 'ja' | 'pt-BR';
+export type supportedLang = "es-ES" | "fr" | "ja" | "pt-BR";
 
-export const { setLocale } = configureLocalization({
+export const {setLocale} = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: locale => {
+  loadLocale: (locale) => {
     switch (locale) {
       case 'es-ES': {
         return templateEs;
@@ -31,14 +31,13 @@ export const { setLocale } = configureLocalization({
         // should not happen
         return templateFr;
       }
-    }
-  },
+  }}
 });
 
-@localized()
-export class UidElement extends LitElement {
+export abstract class UidElement extends LitElement {
+
   @property({ attribute: 'lang', type: String, reflect: true })
-  lang: supportedLang = 'en' as supportedLang;
+  lang: supportedLang = "en" as supportedLang;
 
   static get styles() {
     return css`
@@ -57,7 +56,6 @@ export class UidElement extends LitElement {
         font-size: 14px;
         font-weight: 700;
         padding: 5px 0;
-        flex-shrink: 0;
       }
 
       label.left {
@@ -67,8 +65,8 @@ export class UidElement extends LitElement {
 
       /* Add a red star after required inputs */
       label.required:after {
-        content: ' *';
-        color: #c00;
+        content: " *";
+        color: #C00;
       }
       .container {
         display: flex;

@@ -37,7 +37,6 @@ describe('uid-text', () => {
     // If position left, take the label-width
     expect(container.classList.value).to.include('container-row');
     expect(label.style.flexBasis).equals('25%');
-    expect(label.style.flexShrink).equals('0');
     expect(label.classList.value).to.include('left');
 
     uidText = await fixture(html`
@@ -48,7 +47,6 @@ describe('uid-text', () => {
 
     expect(container.classList.value).to.include('container-col');
     expect(label.style.flexBasis).equals('');
-    expect(label.style.flexShrink).equals('');
     expect(label.classList.value).not.to.include('left');
   });
 
