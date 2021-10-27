@@ -64,7 +64,7 @@ export abstract class LabeledElement extends UidElement {
 
   protected getLabelCss(): string {
     return !this.labelHidden && this.labelPosition === 'left'
-      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%; flex-shrink: 0;`
+      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%;`
       : '';
   }
 

@@ -57,6 +57,7 @@ export class UidElement extends LitElement {
         font-size: 14px;
         font-weight: 700;
         padding: 5px 0;
+        flex-shrink: 0;
       }
 
       label.left {

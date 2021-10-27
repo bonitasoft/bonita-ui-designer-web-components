@@ -1,11 +1,10 @@
-import {property} from "lit/decorators.js"; // eslint-disable-line
-import {msg} from "@lit/localize";
-import {html} from "lit";
-import {targetLocales} from "./locales/locale-codes";
-import {UidElement, setLocale} from "./UidElement";
+import { property } from 'lit/decorators.js'; // eslint-disable-line
+import { msg } from '@lit/localize';
+import { html } from 'lit';
+import { targetLocales } from './locales/locale-codes';
+import { UidElement, setLocale } from './UidElement';
 
 export abstract class LabeledElement extends UidElement {
-
   static readonly LABEL_DEFAULT = 'Default label';
 
   @property({ attribute: 'label-hidden', type: Boolean, reflect: true })
@@ -23,7 +22,11 @@ export abstract class LabeledElement extends UidElement {
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
 
-  async attributeChangedCallback(name: string, old: string | null, value: string | null): Promise<void> {
+  async attributeChangedCallback(
+    name: string,
+    old: string | null,
+    value: string | null
+  ): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
       if (targetLocales.includes(super.lang)) {
@@ -36,7 +39,7 @@ export abstract class LabeledElement extends UidElement {
     }
   }
 
-  protected getLabel(forValue: string|null, required: boolean) {
+  protected getLabel(forValue: string | null, required: boolean) {
     if (this.labelHidden) {
       return html``;
     }
@@ -59,16 +62,18 @@ export abstract class LabeledElement extends UidElement {
 
   protected getLabelCssClass(required: boolean): string {
     return `${required ? 'required' : ''}
-            ${!this.labelHidden && this.labelPosition === 'left' ? ' left' : ''}`;
+            ${
+              !this.labelHidden && this.labelPosition === 'left' ? ' left' : ''
+            }`;
   }
 
   protected getLabelCss(): string {
     return !this.labelHidden && this.labelPosition === 'left'
-      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%; flex-shrink: 0;`
+      ? ` flex-basis: ${(this.labelWidth * 100) / 12}%;`
       : '';
   }
 
-  private static getFor(forValue: string|null) {
+  private static getFor(forValue: string | null) {
     if (forValue) {
       return html`for="${forValue}"`;
     }
