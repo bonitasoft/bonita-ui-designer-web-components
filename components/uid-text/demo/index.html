@@ -5,18 +5,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="bonita.css">
   <style>
-    :root {
-      --input-border: #8b8a8b;
-      --input-focus-h: 245;
-      --input-focus-s: 100%;
-      --input-focus-l: 42%;
-    }
 
     body {
       background: #fafafa;
     }
 
     uid-input::part(input) {
+      outline: none !important;
       color: var(--text-color);
       border: 1px solid var(--input-color);
       border-radius: 2px;
@@ -30,10 +25,6 @@
     uid-text::part(label),
     uid-text::part(paragraph) {
       color: var(--text-color);
-    }
-
-    uid-input::part(input){
-      outline: none !important;
     }
 
     uid-input::part(input):focus:valid:not(:read-only) {
@@ -62,24 +53,6 @@
       color: var(--state-danger-text);
     }
 
-    uid-input::part(input)[type="button"],
-    uid-input::part(input)[type="submit"] {
-      -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
-      -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
-      box-shadow: inset 0px 1px 0px 0px #3985B1;
-      background-color: #216288;
-      border: 1px solid #17445E;
-      cursor: pointer;
-      color: #FFFFFF;
-      text-decoration: none;
-      font: 12px Arial, Helvetica, sans-serif;
-    }
-
-    uid-input::part(input)[type="button"]:hover,
-    uid-input::part(input)[type="submit"]:hover {
-      background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
-      background-color: #28739E;
-    }
   </style>
 </head>
 <body>

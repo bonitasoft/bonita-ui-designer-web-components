@@ -1,9 +1,9 @@
-import { css, html } from 'lit';
-import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { msg } from '@lit/localize';
-import { targetLocales } from './locales/locale-codes.js';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
-import { UidElement, setLocale } from './uid-element';
+import {css, html} from 'lit';
+import {property} from 'lit/decorators.js'; // eslint-disable-line
+import {msg} from '@lit/localize';
+import {targetLocales} from './locales/locale-codes.js';
+import {unsafeHTML} from 'lit-html/directives/unsafe-html.js'; // eslint-disable-line
+import {UidElement, setLocale} from './uid-element';
 
 /**
  * Text field, optionally with a label, where the user can display text

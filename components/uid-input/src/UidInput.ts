@@ -172,7 +172,9 @@ export class UidInput extends UidElement {
       inputElem.style.borderColor = '';
     }
 
-    const { target: {value} } = e;
+    const {
+      target: { value },
+    } = e;
     super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 }
