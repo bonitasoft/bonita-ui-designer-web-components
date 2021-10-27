@@ -151,9 +151,7 @@ export class UidInput extends UidElement {
 
   private getLabelCssClass(): string {
     return `${this.required ? 'required' : ''}
-            ${
-              !this.labelHidden && this.labelPosition === 'left' ? ' left' : ''
-            }`;
+            ${!this.labelHidden && this.labelPosition === 'left' ? ' left' : ''}`;
   }
 
   private getLabelCss(): string {
@@ -172,9 +170,7 @@ export class UidInput extends UidElement {
       inputElem.style.borderColor = '';
     }
 
-    const {
-      target: { value },
-    } = e;
+    const { target: {value} } = e;
     super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 }
