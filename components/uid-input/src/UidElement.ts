@@ -39,7 +39,7 @@ export abstract class UidElement extends LitElement {
   @property({ attribute: 'lang', type: String, reflect: true })
   lang: supportedLang = "en" as supportedLang;
 
-  static get styles() : CSSResultGroup {
+  static get styles() {
     return css`
       :host {
         display: block;
