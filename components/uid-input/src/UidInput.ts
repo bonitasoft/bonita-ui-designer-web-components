@@ -72,7 +72,7 @@ export class UidInput extends LabeledElement {
   render(): TemplateResult {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-        ${super.getLabel("input", this.required)}
+        ${super.getLabel(this.required, "input")}
         <input
           part="input"
           id="input"

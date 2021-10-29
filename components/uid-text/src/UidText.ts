@@ -36,7 +36,7 @@ export class UidText extends LabeledElement {
   render() {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-        ${this.getLabel(null, false)}
+        ${this.getLabel(false)}
         <p part="paragraph" style="${this.getParagraphCss()}">${this.getTextValue()}</p>
       </div>
     `;

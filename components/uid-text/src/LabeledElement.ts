@@ -34,7 +34,7 @@ export  class LabeledElement extends UidElement {
     }
   }
 
-  protected getLabel(forValue: string | null, required: boolean) {
+  protected getLabel(required: boolean, forValue?: string) {
     if (this.labelHidden) {
       return html``;
     }
@@ -43,7 +43,7 @@ export  class LabeledElement extends UidElement {
         part="label"
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass(required)}"
-        ${LabeledElement.getFor(forValue)}
+        for="${forValue}"
         >${this.label ?? msg('Default label')}</label
       >
     `;
@@ -66,12 +66,5 @@ export  class LabeledElement extends UidElement {
     return !this.labelHidden && this.labelPosition === 'left'
       ? ` flex-basis: ${(this.labelWidth * 100) / 12}%;`
       : '';
-  }
-
-  private static getFor(forValue: string | null) {
-    if (forValue) {
-      return html`for="${forValue}"`;
-    }
-    return html``;
   }
 }
