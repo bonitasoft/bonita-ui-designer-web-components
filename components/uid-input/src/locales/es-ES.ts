@@ -9,6 +9,6 @@
     /* eslint-disable @typescript-eslint/no-explicit-any */
 
     export const templates = {
-      'sd17994d58fd80ca0': `Defaulta labello`,
+      'sd17994d58fd80ca0': `Label predeterminado`,
     };
   

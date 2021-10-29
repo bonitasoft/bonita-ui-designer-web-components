@@ -1,18 +1,18 @@
-import {property} from "lit/decorators.js"; // eslint-disable-line
-import {msg} from "@lit/localize";
-import {html} from "lit";
-import {targetLocales} from "./locales/locale-codes";
-import {UidElement, setLocale} from "./UidElement";
+import { property } from 'lit/decorators.js'; // eslint-disable-line
+import {localized, msg} from '@lit/localize';
+import { html } from 'lit';
+import {allLocales} from './locales/locale-codes';
+import { UidElement, setLocale } from './UidElement';
 
-export abstract class LabeledElement extends UidElement {
-
+@localized()
+export  class LabeledElement extends UidElement {
   static readonly LABEL_DEFAULT = 'Default label';
 
   @property({ attribute: 'label-hidden', type: Boolean, reflect: true })
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label: string = LabeledElement.LABEL_DEFAULT;
+  label?: string;
 
   /**
    * Position of the label
@@ -23,20 +23,20 @@ export abstract class LabeledElement extends UidElement {
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
 
-  async attributeChangedCallback(name: string, old: string | null, value: string | null): Promise<void> {
+  async attributeChangedCallback(
+    name: string,
+    old: string | null,
+    value: string | null
+  ): Promise<void> {
     super.attributeChangedCallback(name, old, value);
     if (name === 'lang') {
-      if (targetLocales.includes(super.lang)) {
-        setLocale(super.lang).then(() => {
-          if (this.label === LabeledElement.LABEL_DEFAULT) {
-            this.label = msg('Default label'); // Need real string for lit-translate
-          }
-        });
+      if (allLocales.includes(super.lang)) {
+        setLocale(super.lang);
       }
     }
   }
 
-  protected getLabel(forValue: string|null, required: boolean) {
+  protected getLabel(forValue: string | null, required: boolean) {
     if (this.labelHidden) {
       return html``;
     }
@@ -46,7 +46,7 @@ export abstract class LabeledElement extends UidElement {
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass(required)}"
         ${LabeledElement.getFor(forValue)}
-        >${this.label}</label
+        >${this.label ?? msg('Default label')}</label
       >
     `;
   }
@@ -59,7 +59,9 @@ export abstract class LabeledElement extends UidElement {
 
   protected getLabelCssClass(required: boolean): string {
     return `${required ? 'required' : ''}
-            ${!this.labelHidden && this.labelPosition === 'left' ? ' left' : ''}`;
+            ${
+              !this.labelHidden && this.labelPosition === 'left' ? ' left' : ''
+            }`;
   }
 
   protected getLabelCss(): string {
@@ -68,7 +70,7 @@ export abstract class LabeledElement extends UidElement {
       : '';
   }
 
-  private static getFor(forValue: string|null) {
+  private static getFor(forValue: string | null) {
     if (forValue) {
       return html`for="${forValue}"`;
     }

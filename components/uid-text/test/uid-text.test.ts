@@ -74,6 +74,35 @@ describe('uid-text', () => {
     label = uidText.shadowRoot.querySelector('label');
     expect(label.textContent).equal('Label par défaut');
   });
+
+  it('Should support dynamic changes of the lang property', async () => {
+    const label = uidText.shadowRoot.querySelector('label');
+
+    uidText.setAttribute('lang', 'fr')
+    // We need to delay the checking so that the rendering is done
+    let promise = new Promise((resolve) => {
+      setTimeout(() => {
+        expect(label.textContent).equal("Label par défaut");
+        resolve(0);
+      }, 100);
+    });
+    // wait for the promise is done
+    await promise.then(() => {
+    });
+
+    uidText.setAttribute('lang', 'en')
+    promise = new Promise((resolve) => {
+      setTimeout(() => {
+        const label = uidText.shadowRoot.querySelector('label');
+        expect(label.textContent).equal("Default label");
+        resolve(0);
+      }, 100);
+    });
+    // wait for the promise is done
+    await promise.then(() => {
+    });
+  });
+
 });
 
 function removeComment(str: string) {
