@@ -155,19 +155,17 @@ describe('UidInput', () => {
   });
 
   it('Should support dynamic changes of the lang property', async () => {
-    const label = uidInput.shadowRoot.querySelector('label');
-
     uidInput.setAttribute('lang', 'fr')
     // We need to delay the checking so that the rendering is done
     let promise = new Promise((resolve) => {
+      const label = uidInput.shadowRoot.querySelector('label');
       setTimeout(() => {
         expect(label.textContent).equal("Label par défaut");
         resolve(0);
       }, 100);
     });
     // wait for the promise is done
-    await promise.then(() => {
-    });
+    await promise.then();
 
     uidInput.setAttribute('lang', 'en')
     promise = new Promise((resolve) => {
@@ -178,8 +176,7 @@ describe('UidInput', () => {
       }, 100);
     });
     // wait for the promise is done
-    await promise.then(() => {
-    });
+    await promise.then();
   });
 
 });
