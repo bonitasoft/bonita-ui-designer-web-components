@@ -29,10 +29,8 @@ export  class LabeledElement extends UidElement {
     value: string | null
   ): Promise<void> {
     super.attributeChangedCallback(name, old, value);
-    if (name === 'lang') {
-      if (allLocales.includes(super.lang)) {
+    if (name === 'lang' && allLocales.includes(super.lang)) {
         setLocale(super.lang);
-      }
     }
   }
 
