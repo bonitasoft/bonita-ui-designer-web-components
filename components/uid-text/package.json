@@ -9,7 +9,6 @@
   "files": [
     "assets",
     "dist/uid-text.bundle.min.js",
-    "dist/locales/*.js",
     "src/UidText.ts",
     "src/uid-text.ts",
     "test"
@@ -31,20 +30,17 @@
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
-    "localize:extract": "lit-localize extract",
-    "localize:build": "lit-localize build",
     "gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir assets"
   },
   "dependencies": {
-    "@lit/localize": "^0.11.0",
     "esbuild": "^0.13.3",
     "lit": "^2.0.0"
   },
   "devDependencies": {
     "@bonitasoft/custom-widget-builder": "0.0.11",
+    "@bonitasoft/uid-common": "file:../uid-common",
     "@custom-elements-manifest/analyzer": "^0.4.17",
-    "@lit/localize-tools": "^0.3.7",
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "3.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.2",

@@ -1,11 +1,8 @@
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import {localized, msg} from '@lit/localize';
 import { html } from 'lit';
-import {allLocales} from './locales/locale-codes';
-import { UidElement, setLocale } from './UidElement';
+import { UidElement } from './UidElement';
 
-@localized()
-export  class LabeledElement extends UidElement {
+export abstract class LabeledElement extends UidElement {
   static readonly LABEL_DEFAULT = 'Default label';
 
   @property({ attribute: 'label-hidden', type: Boolean, reflect: true })
@@ -23,17 +20,6 @@ export  class LabeledElement extends UidElement {
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
 
-  async attributeChangedCallback(
-    name: string,
-    old: string | null,
-    value: string | null
-  ): Promise<void> {
-    super.attributeChangedCallback(name, old, value);
-    if (name === 'lang' && allLocales.includes(super.lang)) {
-        setLocale(super.lang);
-    }
-  }
-
   protected getLabel(required: boolean, forValue?: string) {
     if (this.labelHidden) {
       return html``;
@@ -44,7 +30,7 @@ export  class LabeledElement extends UidElement {
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass(required)}"
         for="${forValue}"
-        >${this.label ?? msg('Default label')}</label
+        >${this.label ?? 'Default label'}</label
       >
     `;
   }

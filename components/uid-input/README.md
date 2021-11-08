@@ -32,7 +32,6 @@ npm i @bonitasoft/uid-input
 | `label-hidden`   | `boolean` | false   |                    |
 | `label-position` | `string`  | "top"   | left top           |
 | `label-width`    | `string`  | "4"     |                    |
-| `lang`           | `string`  | "en"    |en es-ES fr ja pt-BR|
 | `max`            | `string`  | ""      |                    |
 | `max-length`     | `string`  | ""      |                    |
 | `min`            | `string`  | ""      |                    |

@@ -64,42 +64,6 @@ describe('uid-text', () => {
     expect(paragraph.style.textAlign).equal('center');
   });
 
-  it('Should display label in correct language when lang attribute is set', async () => {
-    uidText = await fixture(html` <uid-text></uid-text> `);
-    let label = uidText.shadowRoot.querySelector('label');
-    // Default is "en"
-    expect(label.textContent).equal('Default label');
-
-    uidText = await fixture(html` <uid-text lang="fr"></uid-text> `);
-    label = uidText.shadowRoot.querySelector('label');
-    expect(label.textContent).equal('Label par défaut');
-  });
-
-  it('Should support dynamic changes of the lang property', async () => {
-    uidText.setAttribute('lang', 'fr')
-    // We need to delay the checking so that the rendering is done
-    let promise = new Promise((resolve) => {
-      const label = uidText.shadowRoot.querySelector('label');
-      setTimeout(() => {
-        expect(label.textContent).equal("Label par défaut");
-        resolve(0);
-      }, 100);
-    });
-    // wait for the promise is done
-    await promise.then();
-
-    uidText.setAttribute('lang', 'en')
-    promise = new Promise((resolve) => {
-      setTimeout(() => {
-        const label = uidText.shadowRoot.querySelector('label');
-        expect(label.textContent).equal("Default label");
-        resolve(0);
-      }, 100);
-    });
-    // wait for the promise is done
-    await promise.then();
-  });
-
 });
 
 function removeComment(str: string) {
