@@ -1,6 +1,6 @@
 import { CSSResultGroup, TemplateResult, html } from 'lit';
-import { property } from 'lit/decorators.js'; // eslint-disable-line
-import {LabeledElement} from "./LabeledElement";
+import { property } from 'lit/decorators.js';
+import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement";
 
 /**
  * Input field, optionally with a label, where the user can enter information

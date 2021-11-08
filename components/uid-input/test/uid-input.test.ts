@@ -146,37 +146,4 @@ describe('UidInput', () => {
     expect(value).to.equal("at");
   });
 
-  it('Should display french labels when lang attribute is fr', async () => {
-    uidInput = await fixture(html`
-      <uid-input lang="fr"></uid-input>
-    `);
-    const label = uidInput.shadowRoot.querySelector('label');
-    expect(label.textContent).equal("Label par défaut");
-  });
-
-  it('Should support dynamic changes of the lang property', async () => {
-    uidInput.setAttribute('lang', 'fr')
-    // We need to delay the checking so that the rendering is done
-    let promise = new Promise((resolve) => {
-      const label = uidInput.shadowRoot.querySelector('label');
-      setTimeout(() => {
-        expect(label.textContent).equal("Label par défaut");
-        resolve(0);
-      }, 100);
-    });
-    // wait for the promise is done
-    await promise.then();
-
-    uidInput.setAttribute('lang', 'en')
-    promise = new Promise((resolve) => {
-      setTimeout(() => {
-        const label = uidInput.shadowRoot.querySelector('label');
-        expect(label.textContent).equal("Default label");
-        resolve(0);
-      }, 100);
-    });
-    // wait for the promise is done
-    await promise.then();
-  });
-
 });

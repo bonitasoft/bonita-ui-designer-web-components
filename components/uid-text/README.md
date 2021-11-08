@@ -34,7 +34,6 @@ npm i @bonitasoft/uid-text
 | `label-hidden`   | `boolean` | false   |                    |
 | `label-position` | `string`  | "top"   | left top           |
 | `label-width`    | `number`  | 4       |                    |
-| `lang`           | `string`  | "en"    |en es-ES fr ja pt-BR|
 | `text`           | `string`  | ""      |                    |
 
 Note: If `allow-html` is set, this is unsafe to use the `text` attribute with any user-provided input that hasn't been

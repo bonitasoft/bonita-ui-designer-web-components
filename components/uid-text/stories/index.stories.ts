@@ -7,10 +7,6 @@ export default {
   component: 'uid-text',
   argTypes: {
     id: { control: 'text' },
-    lang: {
-      options: ['en', 'es-ES', 'fr', 'ja', 'pt-BR'],
-      control: 'radio',
-    },
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
     labelPosition: {
@@ -34,7 +30,6 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  lang?: string;
   alignment?: boolean;
   allowHtml?: boolean;
   id?: string;
@@ -47,7 +42,6 @@ interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({
-  lang,
   id,
   label,
   labelHidden,
@@ -68,7 +62,6 @@ const Template: Story<ArgTypes> = ({
 }: ArgTypes) => html`
   <uid-text
     alignment=${ifDefined(alignment)}
-    lang=${ifDefined(lang)}
     id=${ifDefined(id)}
     label=${ifDefined(label)}
     text=${ifDefined(text)}
@@ -91,11 +84,6 @@ WithLabel.args = {
 export const WithHtml = Template.bind({});
 WithHtml.args = {
   text: 'A text which <br> allow <b>HTML</b>.',
-};
-
-export const French = Template.bind({});
-French.args = {
-  lang: 'fr',
 };
 
 export const SlottedContent = Template.bind({});
