@@ -9,7 +9,6 @@
   "files": [
     "assets",
     "dist/uid-text.bundle.min.js",
-    "dist/locales/*.js",
     "src/UidText.ts",
     "src/uid-text.ts",
     "test"

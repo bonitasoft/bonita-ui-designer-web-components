@@ -9,7 +9,6 @@
   "files": [
     "assets",
     "dist/uid-input.bundle.min.js",
-    "dist/locales/*.js",
     "src/UidInput.ts",
     "src/uid-input.ts",
     "test"
