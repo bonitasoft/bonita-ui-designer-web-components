@@ -1,5 +1,5 @@
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import { html } from 'lit';
+import {css, html} from 'lit';
 import { UidElement } from './UidElement';
 
 export abstract class LabeledElement extends UidElement {
@@ -19,6 +19,28 @@ export abstract class LabeledElement extends UidElement {
 
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
+
+  static styles = [
+      UidElement.styles,
+      css`
+      label {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 5px 0;
+      }
+
+      label.left {
+        text-align: right;
+        padding-right: 15px;
+      }
+
+      /* Add a red star after required inputs */
+      label.required:after {
+        content: " *";
+        color: #C00;
+      }
+      `
+    ];
 
   protected getLabel(required: boolean, forValue?: string) {
     if (this.labelHidden) {
