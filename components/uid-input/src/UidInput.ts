@@ -1,6 +1,7 @@
-import { CSSResultGroup, TemplateResult, html } from 'lit';
+import { css, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement";
+import {UidElement} from "@bonitasoft/uid-common/dist/src/common/UidElement";
 
 /**
  * Input field, optionally with a label, where the user can enter information
@@ -65,9 +66,16 @@ export class UidInput extends LabeledElement {
   @property({ attribute: 'step', type: Number, reflect: true })
   step: number = 1;
 
-  static get styles(): CSSResultGroup {
-    return super.styles;
-  }
+  static styles = [
+    UidElement.styles,
+    css`
+      input {
+        font-size: 14px;
+        height: 20px;
+        flex-grow: 1;
+      }
+      `
+    ];
 
   render(): TemplateResult {
     return html`
