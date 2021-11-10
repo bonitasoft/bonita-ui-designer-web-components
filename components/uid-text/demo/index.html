@@ -3,57 +3,7 @@
 <head>
   <title>Hello uid-text!</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="bonita.css">
-  <style>
-
-    body {
-      background: #fafafa;
-    }
-
-    uid-input::part(input) {
-      outline: none !important;
-      color: var(--text-color);
-      border: 1px solid var(--input-color);
-      border-radius: 2px;
-      -webkit-transition: all 0.30s ease-in-out;
-      -moz-transition: all 0.30s ease-in-out;
-      -ms-transition: all 0.30s ease-in-out;
-      -o-transition: all 0.30s ease-in-out;
-    }
-
-    uid-input::part(label),
-    uid-text::part(label),
-    uid-text::part(paragraph) {
-      color: var(--text-color);
-    }
-
-    uid-input::part(input):focus:valid:not(:read-only) {
-      box-shadow: 0 0 5px var(--input-color);
-      border: 1px solid var(--input-color);
-    }
-
-    uid-input::part(label):invalid,
-    uid-input::part(input):invalid{
-      color: var(--state-danger-text);
-      border:1px solid var(--state-danger-text);
-    }
-
-    uid-input::part(label):invalid:focus,
-    uid-input::part(input):invalid:focus {
-      box-shadow: 0 0 5px var(--state-danger-text);
-    }
-
-    uid-input::part(input):read-only {
-      background-color: var(--primary-disabled-bg);
-      border-color: var(--primary-disabled-border);
-      cursor: not-allowed;
-    }
-
-    uid-input::part(label)::after {
-      color: var(--state-danger-text);
-    }
-
-  </style>
+  <link rel="stylesheet" href="../node_modules/@bonitasoft/uid-common/src/theme/theme.css">
 </head>
 <body>
   <div id="demo"></div>
