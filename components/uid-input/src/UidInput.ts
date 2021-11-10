@@ -1,7 +1,6 @@
 import { css, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement";
-import {UidElement} from "@bonitasoft/uid-common/dist/src/common/UidElement";
 
 /**
  * Input field, optionally with a label, where the user can enter information
@@ -67,7 +66,7 @@ export class UidInput extends LabeledElement {
   step: number = 1;
 
   static styles = [
-    UidElement.styles,
+    LabeledElement.styles,
     css`
       input {
         font-size: 14px;
