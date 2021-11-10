@@ -88,6 +88,13 @@ describe('uid-text', () => {
     expect(label.textContent).equals("Default label");
   });
 
+  it('Should keep the default label when attribute localization contain an empty translation', async () => {
+    uidText = await fixture(html`
+      <uid-text localization='{"Default label": ""}'></uid-text>
+    `);
+    const label = uidText.shadowRoot.querySelector('label');
+    expect(label.textContent).equals("Default label");
+  });
 
 });
 

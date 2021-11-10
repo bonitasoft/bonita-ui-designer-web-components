@@ -45,7 +45,10 @@ export abstract class UidElement extends LitElement {
 
   protected localize(str: string): string | null {
     if (str in this.translationObj) {
-      return this.translationObj[str];
+      let local = this.translationObj[str];
+      if (local) {
+        return local;
+      }
     }
     return str;
   }

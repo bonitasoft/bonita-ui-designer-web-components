@@ -170,5 +170,13 @@ describe('UidInput', () => {
     expect(label.textContent).equals("Default label");
   });
 
+  it('Should keep the default label when attribute localization contain an empty translation', async () => {
+    uidInput = await fixture(html`
+      <uid-input localization='{"Default label": ""}'></uid-input>
+    `);
+    const label = uidInput.shadowRoot.querySelector('label');
+    expect(label.textContent).equals("Default label");
+  });
+
 
 });
