@@ -52,7 +52,7 @@ export abstract class LabeledElement extends UidElement {
         style="${this.getLabelCss()}"
         class="${this.getLabelCssClass(required)}"
         for="${forValue}"
-        >${this.label ?? 'Default label'}</label
+        >${this.label ?? super.translation('Default label')}</label
       >
     `;
   }

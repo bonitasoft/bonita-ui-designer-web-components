@@ -64,6 +64,14 @@ describe('uid-text', () => {
     expect(paragraph.style.textAlign).equal('center');
   });
 
+  it('Should translate the default label when attribute translations is set', async () => {
+    uidText = await fixture(html`
+      <uid-text translations='{"Default label": "Label par défaut"}'></uid-text>
+    `);
+    const label = uidText.shadowRoot.querySelector('label');
+    expect(label.textContent).equals("Label par défaut");
+  });
+
 });
 
 function removeComment(str: string) {

@@ -67,7 +67,7 @@ export class UidInput extends LabeledElement {
   step: number = 1;
 
   static styles = [
-    UidElement.styles,
+    LabeledElement.styles,
     css`
       input {
         font-size: 14px;
@@ -76,6 +76,10 @@ export class UidInput extends LabeledElement {
       }
       `
     ];
+
+  async attributeChangedCallback(name: string, old: string | null, value: string | null): Promise<void> {
+    super.attributeChangedCallback(name, old, value);
+  }
 
   render(): TemplateResult {
     return html`

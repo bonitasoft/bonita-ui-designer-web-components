@@ -6,6 +6,7 @@ export default {
   title: 'UidInput',
   component: 'uid-input',
   argTypes: {
+    translations: { control: 'text' },
     id: { control: 'text' },
     label: { control: 'text' },
     labelHidden: { control: 'boolean' },
@@ -37,6 +38,7 @@ interface Story<T> {
 }
 
 interface ArgTypes {
+  translations?: string;
   id?: string;
   label?: string;
   labelHidden?: boolean;
@@ -56,6 +58,7 @@ interface ArgTypes {
 }
 
 const Template: Story<ArgTypes> = ({
+  translations,
   id,
   label,
   labelHidden,
@@ -74,6 +77,7 @@ const Template: Story<ArgTypes> = ({
   step,
 }: ArgTypes) => html`
   <uid-input
+    translations=${ifDefined(translations)}
     id=${ifDefined(id)}
     label=${ifDefined(label)}
     placeHolder=${ifDefined(placeHolder)}
@@ -109,6 +113,11 @@ LabelHidden.args = {
 export const Required = Template.bind({});
 Required.args = {
   required: true,
+};
+
+export const French = Template.bind({});
+French.args = {
+  translations: "{\"Default label\": \"Label par défaut\"}",
 };
 
 export const SlottedContent = Template.bind({});

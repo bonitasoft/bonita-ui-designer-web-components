@@ -1,8 +1,26 @@
-import { LitElement, css, CSSResultGroup } from 'lit';
+import {css, CSSResultGroup, LitElement} from 'lit';
+import {property} from "lit/decorators.js";
 
 export abstract class UidElement extends LitElement {
 
+  @property({ attribute: 'translations', type: String, reflect: true })
+  translations: string = '';
+
+  private translationObj : any = {};
+
+  async attributeChangedCallback(name: string, old: string | null, value: string | null): Promise<void> {
+    super.attributeChangedCallback(name, old, value);
+    if (name === 'translations' && value) {
+      try {
+        this.translationObj = JSON.parse(value);
+      } catch (e) {
+        console.log("Json parse error: ", e);
+      }
+    }
+  }
+
   static styles = css`
+
       :host {
         display: block;
         font-family: sans-serif;
@@ -25,4 +43,10 @@ export abstract class UidElement extends LitElement {
       }
     ` as CSSResultGroup;
 
+  protected translation(str: string): string | null {
+    if (str in this.translationObj) {
+      return this.translationObj[str];
+    }
+    return str;
+  }
 }

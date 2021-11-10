@@ -146,4 +146,13 @@ describe('UidInput', () => {
     expect(value).to.equal("at");
   });
 
+  it('Should translate the default label when attribute translations is set', async () => {
+    uidInput = await fixture(html`
+      <uid-input translations='{"Default label": "Label par défaut"}'></uid-input>
+    `);
+    const label = uidInput.shadowRoot.querySelector('label');
+    expect(label.textContent).equals("Label par défaut");
+  });
+
+
 });
