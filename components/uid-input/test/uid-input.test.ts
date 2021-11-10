@@ -146,25 +146,25 @@ describe('UidInput', () => {
     expect(value).to.equal("at");
   });
 
-  it('Should translate the default label when attribute translations is set', async () => {
+  it('Should translate the default label when attribute localization is set', async () => {
     uidInput = await fixture(html`
-      <uid-input translations='{"Default label": "Label par défaut"}'></uid-input>
+      <uid-input localization='{"Default label": "Label par défaut"}'></uid-input>
     `);
     const label = uidInput.shadowRoot.querySelector('label');
     expect(label.textContent).equals("Label par défaut");
   });
 
-  it('Should keep the default label when attribute translations is invalid', async () => {
+  it('Should keep the default label when attribute localization is invalid', async () => {
     uidInput = await fixture(html`
-      <uid-input translations='{"Default label" "Label par défaut"}'></uid-input>
+      <uid-input localization='{"Default label" "Label par défaut"}'></uid-input>
     `);
     const label = uidInput.shadowRoot.querySelector('label');
     expect(label.textContent).equals("Default label");
   });
 
-  it('Should keep the default label when attribute translations does not contain the correct key', async () => {
+  it('Should keep the default label when attribute localization does not contain the correct key', async () => {
     uidInput = await fixture(html`
-      <uid-input translations='{"DefaultLabel": "Label par défaut"}'></uid-input>
+      <uid-input localization='{"DefaultLabel": "Label par défaut"}'></uid-input>
     `);
     const label = uidInput.shadowRoot.querySelector('label');
     expect(label.textContent).equals("Default label");
