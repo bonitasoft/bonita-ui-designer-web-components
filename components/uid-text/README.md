@@ -99,3 +99,11 @@ npm start
 ```
 
 To run a local development server that serves the basic demo located in `demo/index.html`
+
+## Publish npm package
+
+To generate & test the web component bundle, and publish it:
+```bash
+npm run publish
+```
+

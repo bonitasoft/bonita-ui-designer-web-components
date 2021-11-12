@@ -27,6 +27,7 @@
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "test": "tsc && wtr --coverage",
+    "test:bundle": "npm run bundle && sed -e \"s?src/uid-input.js?uid-input.bundle.min.js?g\" dist/test/uid-input.test.js > dist/test/uid-input.bundle.test.js && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
@@ -34,7 +35,6 @@
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInput.json --webComponentBundle dist/uid-input.bundle.min.js --outputDir assets"
   },
   "dependencies": {
-    "esbuild": "^0.13.3",
     "lit": "^2.0.0"
   },
   "devDependencies": {
@@ -49,6 +49,7 @@
     "@web/dev-server-storybook": "0.3.8",
     "@web/test-runner": "0.13.20",
     "concurrently": "^6.3.0",
+    "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-lit": "^1.6.0",

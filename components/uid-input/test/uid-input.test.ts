@@ -1,7 +1,6 @@
 import {html} from 'lit';
 import {expect, fixture} from '@open-wc/testing';
 import '../src/uid-input.js';
-//import '../uid-input.bundle.min.js';
 
 let uidInput:any;
 
