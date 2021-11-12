@@ -21,7 +21,7 @@
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",
-    "bundle": "tsc && ./node_modules/.bin/esbuild dist/src/uid-text.js --minify-syntax --minify-whitespace --bundle --outfile=dist/uid-text.bundle.min.js",
+    "bundle": "tsc && ./node_modules/.bin/esbuild dist/src/uid-text.js --minify --bundle --outfile=dist/uid-text.bundle.min.js",
     "prepublish": "tsc && npm run analyze -- --exclude dist",
     "publish": "npm run bundle && npm run gen-widget-assets && npm publish",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",

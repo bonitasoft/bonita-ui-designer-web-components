@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { expect, fixture } from '@open-wc/testing';
 import '../src/uid-text.js';
+// import '../uid-text.bundle.min.js';
 
 let uidText: any;
 
