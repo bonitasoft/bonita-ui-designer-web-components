@@ -2,7 +2,7 @@
   "name": "@bonitasoft/uid-common",
   "description": "Common library for UID web components",
   "license": "GPLv2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsc",
     "test": "tsc",
