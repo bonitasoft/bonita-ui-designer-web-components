@@ -31,7 +31,7 @@
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
-    "gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
+    "gen-widget": "npm run bundle && cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir assets"
   },
   "dependencies": {
