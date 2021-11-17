@@ -37,7 +37,8 @@ For instance if you want to extend the `uid-input` web component and create `my-
   ```
 
 Then, you can open the repository in your favorite IDE, and modify your new web component as needed.  
-For instance, you may want to add a new property to the component.
+For instance, you may want to add a new property to the component.  
+Do not forget to update the Storybook story if needed (index.stories.ts file).
 
 ---
 ### Start the component  
