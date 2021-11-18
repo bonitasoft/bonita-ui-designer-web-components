@@ -1,0 +1,46 @@
+{
+  "id": "uidTitle",
+  "name": "Title",
+  "type": "widget",
+  "template": "@uidTitle.tpl.html",
+  "order": "1",
+  "custom": true,
+  "modelVersion": "3.0",
+  "icon": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 20'><g><path fill='#fff' d='M29.6,8H33v10h3V4h-2.3c-0.1,0.9-1.4,2-4.1,2l-0.4,0.1L29.6,8z M24,11v7h3V3h-3v6h-6V3h-3v15h3v-7H24z'/></g></svg>",
+  "properties": [
+    {
+      "name": "allowHTML",
+      "type": "boolean",
+      "label": "Allow html",
+      "defaultValue": false,
+      "bond" : "constant"
+    },
+    {
+      "name": "text",
+      "type": "text",
+      "label": "Text",
+      "defaultValue": "Title",
+      "bond" : "interpolation"
+    },
+    {
+      "name": "alignment",
+      "label": "Alignment",
+      "type": "choice",
+      "choiceValues": [
+        "left", "center", "right"
+      ],
+      "defaultValue": "left",
+      "bond" : "constant"
+    },
+    {
+      "name": "level",
+      "label": "Level",
+      "type": "choice",
+      "choiceValues": [
+        "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"
+      ],
+      "defaultValue": "Level 1",
+      "bond" : "constant"
+    }
+  ]
+}
