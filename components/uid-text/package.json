@@ -38,7 +38,7 @@
     "lit": "^2.0.0"
   },
   "devDependencies": {
-    "@bonitasoft/custom-widget-builder": "0.0.11",
+    "@bonitasoft/custom-widget-builder": "0.0.12",
     "@bonitasoft/uid-common": "file:../uid-common",
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@open-wc/eslint-config": "^4.3.0",
