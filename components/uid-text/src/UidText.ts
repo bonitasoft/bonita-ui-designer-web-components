@@ -5,6 +5,8 @@ import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElem
 
 /**
  * Text field, optionally with a label, where the user can display text
+ *
+ * @element uid-text
  */
 export class UidText extends LabeledElement {
 

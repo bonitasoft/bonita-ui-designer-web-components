@@ -18,6 +18,7 @@
     "./uid-text.js": "./dist/src/uid-text.js"
   },
   "scripts": {
+    "init": "cd ../uid-common && npm i && cd - && npm i",
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",
@@ -31,14 +32,14 @@
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
     "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
-    "gen-widget": "cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
+    "gen-widget": "npm run bundle && cwb gen-widget --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir uid_widget",
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir assets"
   },
   "dependencies": {
     "lit": "^2.0.0"
   },
   "devDependencies": {
-    "@bonitasoft/custom-widget-builder": "0.0.11",
+    "@bonitasoft/custom-widget-builder": "0.0.12",
     "@bonitasoft/uid-common": "file:../uid-common",
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@open-wc/eslint-config": "^4.3.0",
