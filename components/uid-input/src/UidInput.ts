@@ -4,6 +4,8 @@ import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElem
 
 /**
  * Input field, optionally with a label, where the user can enter information
+ *
+ * @element uid-input
  */
 export class UidInput extends LabeledElement {
 

@@ -18,6 +18,7 @@
     "./uid-input.js": "./dist/src/uid-input.js"
   },
   "scripts": {
+    "init": "cd ../uid-common && npm i && cd - && npm i",
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",

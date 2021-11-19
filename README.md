@@ -33,7 +33,7 @@ For instance if you want to extend the `uid-input` web component and create `my-
 ### Install its dependencies:
   ```bash
   $ cd my-input
-  $ npm install
+  $ npm run init
   ```
 
 Then, you can open the repository in your favorite IDE, and modify your new web component as needed.  
@@ -62,8 +62,11 @@ Add the necessary unit tests (in the `test` folder), and run:
 ### Update the properties json file
 > **Note**: The properties files is an UI Designer specific json file, which defines all the information required to handle the web component in the UI Designer editor (properties, templates, icon, ...).  
 
-For instance, add a json object for the new property in `myInput.json`.  
+For instance, add a json object for the new property in `myInput.json`.
 For details, see "Adding UI Designer specific information to the json properties file" section below.
+
+If the new web component has many new properties, you can generate a new properties file.
+See "Generating the UI Designer properties file" section below.
 
 ---
 ### Publish your component
@@ -147,7 +150,8 @@ class BottomButton extends Polymer.Element {
 
 Generate the properties file using the [cwb CLI](https://github.com/bonitasoft/bonita-ui-designer-sdk/blob/main/custom-widget-builder/README.md#main-usage).
 If the generator cannot get any information to generate the properties file, please consider either adding information to
-your components using JSDoc (see above), or generate a properties template file using the CLI.
+your components using JSDoc (see above), or generate a properties template file using the CLI.  
+Tip: If you see `Cannot get any information from file` error message, verify if `@element` JSDoc tag is present
 
 ### Generating a web component bundle
 
