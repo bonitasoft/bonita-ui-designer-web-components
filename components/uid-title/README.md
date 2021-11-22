@@ -28,7 +28,7 @@ npm i @bonitasoft/uid-title
 | Attribute        | Type      | Default | Possible values    |
 |------------------|-----------|---------|--------------------|
 | `id`             | `string`  | ""      |                    |
-| `level    `      | `string`  | "text"  |Level 1, Level 2,Level 3,Level 4, Level 5, Level 6|
+| `level    `      | `string`  | "text"  |level1, level2, level3, level4, level5, level6|
 | `alignment`      | `string`  | "left"  |left, center, right |
 | `text`           | `string`  | "Title" |                    |
 | `allow-html`     | `boolean` | "false" |                    |
