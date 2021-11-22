@@ -3,7 +3,7 @@
   "description": "A title component",
   "homepage": "https://github.com/bonitasoft/web-components/components/uid-title#readme",
   "license": "GPLv2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "files": [
