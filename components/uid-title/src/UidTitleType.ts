@@ -5,10 +5,10 @@ export enum Alignment {
 }
 
 export enum Level {
-  LEVEL1="Level 1",
-  LEVEL2="Level 2",
-  LEVEL3="Level 3",
-  LEVEL4="Level 4",
-  LEVEL5="Level 5",
-  LEVEL6="Level 6"
+  LEVEL1="level1",
+  LEVEL2="level2",
+  LEVEL3="level3",
+  LEVEL4="level4",
+  LEVEL5="level5",
+  LEVEL6="level6"
 }

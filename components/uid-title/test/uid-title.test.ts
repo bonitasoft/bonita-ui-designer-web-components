@@ -22,7 +22,7 @@ describe('UidTitle', () => {
   });
 
   it('Should display a h2 title', async () => {
-    uidTitle = await fixture(html` <uid-title text="A custom title" level="Level 2"></uid-title> `);
+    uidTitle = await fixture(html` <uid-title text="A custom title" level="level 2"></uid-title> `);
     const title = uidTitle.shadowRoot.querySelector('h2');
 
     expect(title).not.to.equal(null);
@@ -30,7 +30,7 @@ describe('UidTitle', () => {
   });
 
   it('Should display a h3 title with text align to right when attribute is set', async () => {
-    uidTitle = await fixture(html` <uid-title alignment="right" text="A title align to right" level="Level 3"></uid-title>`);
+    uidTitle = await fixture(html` <uid-title alignment="right" text="A title align to right" level="Level3"></uid-title>`);
     const title = uidTitle.shadowRoot.querySelector('h3');
 
     expect(title).not.to.equal(null);

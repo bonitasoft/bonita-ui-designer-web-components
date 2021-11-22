@@ -10,8 +10,6 @@ import {Alignment, Level} from "./UidTitleType";
  */
 export class UidTitle extends UidElement {
 
-  private name = 'uidTitle';
-
   @property({attribute: 'id', type: String, reflect: true})
   id: string = '';
 
@@ -27,7 +25,7 @@ export class UidTitle extends UidElement {
   alignment: Alignment = Alignment.LEFT;
 
   @property({attribute: 'level', type: String, reflect: true})
-  level: Level =Level.LEVEL1;
+  level: Level = Level.LEVEL1;
 
   static styles = [
     UidElement.styles,
@@ -35,7 +33,7 @@ export class UidTitle extends UidElement {
   ];
 
   render(): TemplateResult {
-    switch (this.level) {
+    switch (this.adaptLevel(this.level)) {
       case Level.LEVEL1:
         return html`<h1 style="${this.getTextAlignCss()}">${this.getTextValue()}</h1>`;
       case Level.LEVEL2:
@@ -48,7 +46,13 @@ export class UidTitle extends UidElement {
         return html`<h5 style="${this.getTextAlignCss()}">${this.getTextValue()}</h5>`;
       case Level.LEVEL6:
         return html`<h6 style="${this.getTextAlignCss()}">${this.getTextValue()}</h6>`;
+      default:
+        return html`<h1 style="${this.getTextAlignCss()}">${this.getTextValue()}</h1>`;
     }
+  }
+
+  private adaptLevel(level:string) : string{
+    return level.toLowerCase().replace(/\s/g, "")
   }
 
   private getTextValue() {
