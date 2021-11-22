@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { expect, fixture } from '@open-wc/testing';
 import '../src/uid-text.js';
+import {removeComment} from "@bonitasoft/uid-common/dist/src/test/test-common-utils";
 
 let uidText: any;
 
@@ -97,8 +98,3 @@ describe('uid-text', () => {
   });
 
 });
-
-function removeComment(str: string) {
-  // Remove comments, and leading and trailing whitespaces
-  return str.replace(/<!--.*?-->/g, '').trim();
-}
