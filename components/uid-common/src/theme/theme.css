@@ -17,7 +17,8 @@ uid-input::part(input) {
 
 uid-input::part(label),
 uid-text::part(label),
-uid-text::part(paragraph) {
+uid-text::part(paragraph),
+uid-title::part(title){
   color: var(--text-color);
 }
 

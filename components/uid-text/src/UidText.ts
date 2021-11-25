@@ -1,6 +1,6 @@
 import {html} from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import {unsafeHTML} from "lit-html/directives/unsafe-html.js";
+import {unsafeHTML} from "lit-html/directives/unsafe-html.js";// eslint-disable-line
 import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement"; // eslint-disable-line
 
 /**
