@@ -28,8 +28,7 @@ uid-input::part(label),
 uid-text::part(label),
 uid-text::part(paragraph),
 uid-title::part(title),
-uid-textarea::part(label),
-uid-textarea::part(title){
+uid-textarea::part(label){
   color: var(--text-color);
 }
 
@@ -40,7 +39,7 @@ uid-textarea::part(textarea):focus:valid:not(:read-only){
 }
 
 uid-input::part(label):invalid,
-uid-input::part(label):invalid,
+uid-input::part(input):invalid,
 uid-textarea::part(input):invalid,
 uid-textarea::part(textarea):invalid{
   color: var(--state-danger-text);

@@ -1,4 +1,4 @@
-import { css, html, TemplateResult } from 'lit';
+import { html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { LabeledElement } from '@bonitasoft/uid-common/dist/src/common/LabeledElement';
 
