@@ -1,0 +1,135 @@
+{
+  "name": "uid-textarea",
+  "description": "An input with label",
+  "homepage": "https://github.com/bonitasoft/web-components/components/uid-textarea#readme",
+  "license": "GPLv2",
+  "version": "1.0.1",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "files": [
+    "assets",
+    "dist/uid-textarea.bundle.min.js",
+    "src/UidTextarea.ts",
+    "src/uid-textarea.ts",
+    "test"
+  ],
+  "exports": {
+    ".": "./dist/src/index.js",
+    "./uid-textarea.js": "./dist/src/uid-textarea.js"
+  },
+  "scripts": {
+	"gen-widget": "cwb gen-widget --propertiesFile uidTextarea.json --webComponentBundle lib/uid-textarea.es5.min.js --outputDir uid_widget",
+    "init": "cd ../uid-common && npm i && cd - && npm i",
+    "analyze": "cem analyze --litelement",
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "build": "tsc && npm run analyze -- --exclude dist",
+    "bundle": "tsc && ./node_modules/.bin/esbuild dist/src/uid-textarea.js --minify-syntax --minify-whitespace --bundle --outfile=dist/uid-textarea.bundle.min.js",
+    "prepublish": "tsc && npm run analyze -- --exclude dist",
+    "publish": "npm run test:bundle && npm run gen-widget-assets && npm publish --access public",
+    "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
+    "test": "tsc && wtr --coverage",
+    "test:bundle": "npm run bundle && sed -e \"s?src/uid-textarea.js?uid-textarea.bundle.min.js?g\" dist/test/uid-textarea.test.js > dist/test/uid-textarea.bundle.test.js && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
+    "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
+    "gen-widget": "npm run bundle && cwb gen-widget --propertiesFile uidTextarea.json --webComponentBundle dist/uid-textarea.bundle.min.js --outputDir uid_widget",
+    "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidTextarea.json --webComponentBundle dist/uid-textarea.bundle.min.js --outputDir assets"
+  },
+  "dependencies": {
+    "lit": "^2.0.0",
+    "@bonitasoft/uid-common": "file:../uid-common"
+  },
+  "devDependencies": {
+    "@bonitasoft/custom-widget-builder": "0.0.12",
+    "@custom-elements-manifest/analyzer": "^0.4.17",
+    "@open-wc/eslint-config": "^4.3.0",
+    "@open-wc/testing": "3.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "@web/dev-server": "^0.1.25",
+    "@web/dev-server-storybook": "0.3.8",
+    "@web/test-runner": "0.13.20",
+    "concurrently": "^6.3.0",
+    "esbuild": "^0.13.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-lit": "^1.6.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.4.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4"
+  },
+  "customElements": "custom-elements.json",
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "@open-wc",
+      "prettier",
+      "plugin:lit/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      }
+    },
+    "rules": {
+      "no-use-before-define": [
+        2,
+        {
+          "functions": false,
+          "classes": false
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ],
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ],
+      "@typescript-eslint/no-inferrable-types": [
+        2,
+        {
+          "ignoreParameters": true,
+          "ignoreProperties": true
+        }
+      ],
+      "no-shadow": "off",
+      "@typescript-eslint/no-shadow": ["error"]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

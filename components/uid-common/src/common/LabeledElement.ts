@@ -1,6 +1,7 @@
-import { property } from 'lit/decorators.js'; // eslint-disable-line
+import {property} from 'lit/decorators.js'; // eslint-disable-line
 import {css, html} from 'lit';
-import { UidElement } from './UidElement';
+import {UidElement} from './UidElement';
+import {Position} from "./PropertiesType";
 
 export abstract class LabeledElement extends UidElement {
   static readonly LABEL_DEFAULT = 'Default label';
@@ -15,7 +16,7 @@ export abstract class LabeledElement extends UidElement {
    * Position of the label
    */
   @property({ attribute: 'label-position', type: String, reflect: true })
-  labelPosition: string = 'top';
+  labelPosition: Position = Position.TOP;
 
   @property({ attribute: 'label-width', type: Number, reflect: true })
   labelWidth: number = 4;
