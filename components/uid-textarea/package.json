@@ -1,9 +1,9 @@
 {
   "name": "uid-textarea",
-  "description": "An input with label",
+  "description": "An textarea input with label",
   "homepage": "https://github.com/bonitasoft/web-components/components/uid-textarea#readme",
   "license": "GPLv2",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "files": [
@@ -18,7 +18,6 @@
     "./uid-textarea.js": "./dist/src/uid-textarea.js"
   },
   "scripts": {
-	"gen-widget": "cwb gen-widget --propertiesFile uidTextarea.json --webComponentBundle lib/uid-textarea.es5.min.js --outputDir uid_widget",
     "init": "cd ../uid-common && npm i && cd - && npm i",
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
@@ -37,8 +36,8 @@
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidTextarea.json --webComponentBundle dist/uid-textarea.bundle.min.js --outputDir assets"
   },
   "dependencies": {
-    "lit": "^2.0.0",
-    "@bonitasoft/uid-common": "file:../uid-common"
+    "@bonitasoft/uid-common": "file:../uid-common",
+    "lit": "^2.0.0"
   },
   "devDependencies": {
     "@bonitasoft/custom-widget-builder": "0.0.12",
@@ -54,7 +53,7 @@
     "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-lit": "^1.6.0",
+    "eslint-plugin-lit": "^1.6.1",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "prettier": "^2.4.1",
@@ -70,7 +69,8 @@
       "plugin:lit/recommended"
     ],
     "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "lit"
     ],
     "settings": {
       "import/resolver": {
@@ -100,7 +100,7 @@
         "error",
         "ignorePackages",
         {
-          "js": "never",
+          "js": "ignorePackages",
           "jsx": "never",
           "ts": "never",
           "tsx": "never"
@@ -114,7 +114,9 @@
         }
       ],
       "no-shadow": "off",
-      "@typescript-eslint/no-shadow": ["error"]
+      "@typescript-eslint/no-shadow": [
+        "error"
+      ]
     }
   },
   "prettier": {

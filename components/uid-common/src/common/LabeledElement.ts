@@ -10,7 +10,7 @@ export abstract class LabeledElement extends UidElement {
   labelHidden: boolean = false;
 
   @property({ attribute: 'label', type: String, reflect: true })
-  label?: string;
+  label?: string = LabeledElement.LABEL_DEFAULT;
 
   /**
    * Position of the label

@@ -15,6 +15,7 @@ export class UidTextarea extends LabeledElement {
 
   @property({ attribute: 'max-length', type: Number, reflect: true })
   maxLength: number | undefined;
+
   /**
    * Specifies the minimum length of textual data (strings)
    */
@@ -30,9 +31,7 @@ export class UidTextarea extends LabeledElement {
   @property({ attribute: 'value', type: String, reflect: true })
   value: string = '';
 
-  static styles = [
-    LabeledElement.styles
-  ];
+  static styles = [LabeledElement.styles];
 
   render(): TemplateResult {
     return html`
@@ -48,15 +47,17 @@ export class UidTextarea extends LabeledElement {
           maxlength="${this.maxLength}"
           ?required="${this.required}"
           ?readOnly=${this.readOnly}
-        />
-
+        >
+        </textarea>
       </div>
     `;
   }
 
   private valueChanged(e: any) {
-    const inputElem = super.shadowRoot!.querySelector('textarea') as HTMLTextAreaElement;
-    inputElem.style.borderColor = !inputElem.checkValidity() ? 'red' :'';
+    const inputElem = super.shadowRoot!.querySelector(
+      'textarea'
+    ) as HTMLTextAreaElement;
+    inputElem.style.borderColor = !inputElem.checkValidity() ? 'red' : '';
     const {
       target: { value },
     } = e;

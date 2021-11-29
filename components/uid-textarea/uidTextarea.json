@@ -37,12 +37,6 @@
       "defaultValue": ""
     },
     {
-      "name": "readOnly",
-      "type": "boolean",
-      "label": "Read only",
-      "defaultValue": false
-    },
-    {
       "label": "Label",
       "name": "label",
       "type": "text",
@@ -51,7 +45,13 @@
       "bond": "interpolation"
     },
     {
-
+      "label": "Label hidden",
+      "name": "labelHidden",
+      "type": "boolean",
+      "bond": "constant",
+      "defaultValue": false
+    },
+    {
       "label": "Label position",
       "name": "labelPosition",
       "type": "choice",

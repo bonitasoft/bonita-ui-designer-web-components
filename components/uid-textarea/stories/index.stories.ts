@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import '../src/uid-textarea.js';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
-import {Position} from "@bonitasoft/uid-common/dist/src/common/PropertiesType";
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { Position } from '@bonitasoft/uid-common/dist/src/common/PropertiesType';
 
 export default {
   title: 'UidTextarea',
@@ -64,7 +64,7 @@ const Template: Story<ArgTypes> = ({
     ?readonly=${ifDefined(readOnly)}
     label-position=${ifDefined(labelPosition)}
     label-width=${ifDefined(labelWidth)}
-    value=${ifDefined(value)}
+    .value=${ifDefined(value)}
     ?label-hidden=${labelHidden}
     ?required=${required}
   >
@@ -91,10 +91,9 @@ Required.args = {
 
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
-  label : 'Try to write something...',
-  value: 'you can\'t write here !',
-  readOnly: true
-
+  label: 'Try to write something...',
+  value: "you can't write here !",
+  readOnly: true,
 };
 
 export const valueLengthRestriction = Template.bind({});

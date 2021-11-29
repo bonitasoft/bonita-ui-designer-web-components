@@ -1,7 +1,7 @@
 # \<uid-textarea>
 ![npmVersion](https://img.shields.io/npm/v/uid-textarea?color=blue&style=plastic)
 
-Simple input (with label) web component.
+Simple textarea (with label) web component.
 
 (This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation)
 
@@ -28,19 +28,14 @@ npm i uid-textarea
 | Attribute        | Type      | Default | Possible values    |
 |------------------|-----------|---------|--------------------|
 | `id`             | `string`  | ""      |                    |
-| `label`          | `string`  | ""      |                    |
+| `label`          | `string`  | "Default label"      |                    |
 | `label-hidden`   | `boolean` | false   |                    |
 | `label-position` | `string`  | "top"   | left top           |
 | `label-width`    | `string`  | "4"     |                    |
-| `max`            | `string`  | ""      |                    |
 | `max-length`     | `string`  | ""      |                    |
-| `min`            | `string`  | ""      |                    |
 | `min-length`     | `string`  | ""      |                    |
-| `placeholder`    | `string`  | ""      |                    |
 | `readonly`       | `boolean` | false   |                    |
 | `required`       | `boolean` | false   |                    |
-| `step`           | `string`  | "1"     |                    |
-| `type`           | `string`  | "text"  |                    |
 | `value`          | `string`  | ""      |                    |
 
 
