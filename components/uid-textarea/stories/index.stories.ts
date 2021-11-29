@@ -1,11 +1,11 @@
 import { html, TemplateResult } from 'lit';
-import '../src/uid-input.js';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { Position } from "@bonitasoft/uid-common/dist/src/common/PropertiesType"; // eslint-disable-line
+import '../src/uid-textarea.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { Position } from '@bonitasoft/uid-common/dist/src/common/PropertiesType';
 
 export default {
-  title: 'UidInput',
-  component: 'uid-input',
+  title: 'UidTextarea',
+  component: 'uid-textarea',
   argTypes: {
     id: { control: 'text' },
     label: { control: 'text' },
@@ -16,18 +16,11 @@ export default {
     },
     labelWidth: { control: 'number' },
     value: { control: 'text' },
-    type: {
-      options: ['text', 'number', 'email', 'password'],
-      control: 'radio',
-    },
-    min: { control: 'number' },
-    max: { control: 'number' },
-    step: { control: 'number' },
     minLength: { control: 'number' },
     maxLength: { control: 'number' },
-    placeHolder: { control: 'text' },
     readOnly: { control: 'boolean' },
     required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
 };
 
@@ -41,64 +34,48 @@ interface ArgTypes {
   id?: string;
   label?: string;
   labelHidden?: boolean;
-  placeHolder?: string;
   value?: string;
-  type?: string;
   required?: boolean;
   minLength?: number;
   maxLength?: number;
   readOnly?: boolean;
   labelPosition?: string;
   labelWidth?: number;
-  min?: number;
-  max?: number;
-  step?: number;
-  slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
   id,
   label,
   labelHidden,
-  placeHolder,
   value,
-  type,
   required,
   minLength,
   maxLength,
   readOnly,
   labelPosition,
   labelWidth,
-  slot,
-  min,
-  max,
-  step,
 }: ArgTypes) => html`
-  <uid-input
+  <uid-textarea
     id=${ifDefined(id)}
     label=${ifDefined(label)}
-    placeHolder=${ifDefined(placeHolder)}
     value=${ifDefined(value)}
-    type=${ifDefined(type)}
     min-length=${ifDefined(minLength)}
     max-length=${ifDefined(maxLength)}
     ?readonly=${ifDefined(readOnly)}
     label-position=${ifDefined(labelPosition)}
     label-width=${ifDefined(labelWidth)}
-    min=${ifDefined(min)}
-    max=${ifDefined(max)}
-    step=${ifDefined(step)}
+    .value=${ifDefined(value)}
     ?label-hidden=${labelHidden}
     ?required=${required}
   >
-    ${slot}
-  </uid-input>
+  </uid-textarea>
 `;
 
 export const Regular = Template.bind({});
 
 export const LabelLeft = Template.bind({});
 LabelLeft.args = {
+  label: 'A left label',
   labelPosition: 'left',
 };
 
@@ -114,13 +91,14 @@ Required.args = {
 
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
+  label: 'Try to write something...',
+  value: "you can't write here !",
   readOnly: true,
 };
 
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+export const valueLengthRestriction = Template.bind({});
+valueLengthRestriction.args = {
+  label: 'Enter a value with size between 2 and 5',
+  minLength: 2,
+  maxLength: 5,
 };

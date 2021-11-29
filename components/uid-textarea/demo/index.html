@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <title>Hello uid-textarea!</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../node_modules/@bonitasoft/uid-common/src/theme/theme.css">
+</head>
+<body>
+<div id="demo"></div>
+
+<script type="module">
+  import {html, render} from 'lit';
+  import '../dist/src/uid-textarea';
+
+  render(
+    html`
+      <uid-textarea id="2" label="My readonly label" value="A text area without label" label-hidden required></uid-textarea>
+      <uid-textarea id="3" label="A textarea label" value="the value disabled"
+                 min-length="3" max-length="20" label-position="left" label-width="3" required readonly></uid-textarea>
+    `,
+    document.querySelector('#demo')
+  );
+</script>
+</body>
+</html>
