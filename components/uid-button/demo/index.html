@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <title>Hello uid-button!</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="bonita.css">
+  <style>
+
+    body {
+      background: #fafafa;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../dist/src/uid-button';
+
+    render(
+      html`
+        <uid-button id="add" label="Add" action="Add to collection" collection='["a", "b", "c"]' value-to-add="d" add-collection-position="Last"></uid-button>
+        <label id="outputAdd"></label>
+        <uid-button id="removeLast" label="Remove Last" action="Remove from collection" collection='["a", "b", "c"]'></uid-button>
+        <label id="outputRemoveLast"></label>
+        <uid-button id="removeFirst" label="Remove First" action="Remove from collection" collection='["a", "b", "c"]' remove-collection-position="First"></uid-button>
+        <label id="outputRemoveFirst"></label>
+        <uid-button id="removeItem" label="Remove Item" action="Remove from collection" collection='["a", "b", "c"]' remove-collection-position="Item" remove-item="b"></uid-button>
+        <label id="outputRemoveItem"></label>
+
+
+      `,
+      document.querySelector('#demo')
+    );
+
+
+    setInterval(function() {
+      document.getElementById('outputAdd').innerHTML = document.getElementById('add').getAttribute("collection");
+    }, 1000);
+    setInterval(function() {
+      document.getElementById('outputRemoveLast').innerHTML = document.getElementById('removeLast').getAttribute("collection");
+    }, 1000);
+    setInterval(function() {
+      document.getElementById('outputRemoveFirst').innerHTML = document.getElementById('removeFirst').getAttribute("collection");
+    }, 1000);
+    setInterval(function() {
+      document.getElementById('outputRemoveItem').innerHTML = document.getElementById('removeItem').getAttribute("collection");
+    }, 1000);
+
+  </script>
+</body>
+</html>
