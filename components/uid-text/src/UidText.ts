@@ -12,15 +12,6 @@ export class UidText extends LabeledElement {
 
   // Common properties below are handled by the div above uid-text:
 
-  // @property({ attribute: 'width', type: String, reflect: true })
-  // private width: string = "12";
-  //
-  // @property({ attribute: 'css-classes', type: String, reflect: true })
-  // private cssClasses: string = "";
-  //
-  // @property({ attribute: 'hidden', type: Boolean, reflect: true })
-  // private hidden: boolean = false;
-
   @property({ attribute: 'id', type: String, reflect: true })
   id: string = '';
 
