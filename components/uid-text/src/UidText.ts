@@ -1,7 +1,7 @@
-import {html} from 'lit';
+import { html } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
-import {unsafeHTML} from "lit-html/directives/unsafe-html.js";// eslint-disable-line
-import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement"; // eslint-disable-line
+import { unsafeHTML } from 'lit/directives/unsafe-html.js'; // eslint-disable-line
+import { LabeledElement } from '@bonitasoft/uid-common/dist/src/common/LabeledElement';
 
 /**
  * Text field, optionally with a label, where the user can display text
@@ -9,7 +9,6 @@ import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElem
  * @element uid-text
  */
 export class UidText extends LabeledElement {
-
   // Common properties below are handled by the div above uid-text:
 
   @property({ attribute: 'id', type: String, reflect: true })
@@ -30,7 +29,9 @@ export class UidText extends LabeledElement {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
         ${this.getLabel(false)}
-        <p part="paragraph" style="${this.getParagraphCss()}">${this.getTextValue()}</p>
+        <p part="paragraph" style="${this.getParagraphCss()}">
+          ${this.getTextValue()}
+        </p>
       </div>
     `;
   }

@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
-import '../src/uid-text.js';
-import { ifDefined } from 'lit-html/directives/if-defined.js'; // eslint-disable-line
+import '../src/uid-text';
+import { ifDefined } from 'lit/directives/if-defined.js'; // eslint-disable-line
 
 export default {
   title: 'UidText',
@@ -58,7 +58,7 @@ const Template: Story<ArgTypes> = ({
   allowHtml,
   labelPosition,
   labelWidth,
-  slot
+  slot,
 }: ArgTypes) => html`
   <uid-text
     alignment=${ifDefined(alignment)}

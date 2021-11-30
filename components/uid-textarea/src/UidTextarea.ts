@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js'; // eslint-disable-line
 import { LabeledElement } from '@bonitasoft/uid-common/dist/src/common/LabeledElement';
 
 /**

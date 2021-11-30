@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { expect, fixture } from '@open-wc/testing';
 import '../src/uid-text.js';
-import {removeComment} from "@bonitasoft/uid-common/dist/src/test/test-common-utils";
+import { removeComment } from '@bonitasoft/uid-common/dist/src/test/test-common-utils';
 
 let uidText: any;
 

@@ -1,4 +1,4 @@
-import {property} from "lit/decorators";
+import {property} from 'lit/decorators.js'; // eslint-disable-line
 import {UidElement} from "./UidElement";
 
 /**
