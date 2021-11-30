@@ -12,14 +12,21 @@ testStatus() {
     return $status
 }
 
+buildAndTest() {
+    testStatus cd $1
+    testStatus npm ci
+    testStatus npm run build
+    testStatus npm run test
+    testStatus cd ..
+}
+
 testStatus cd $BASEDIR
 testStatus cd components
+buildAndTest "uid-common"
 for dir in *
 do
-  testStatus cd $dir
-  testStatus npm ci
-  testStatus npm run build
-  testStatus npm run test
-  testStatus cd ..
+    if [ "$dir" != "uid-common" ]; then
+        buildAndTest $dir
+    fi
 done
 
