@@ -1,6 +1,6 @@
 import { css, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElement";
+import { LabeledElement } from '@bonitasoft/uid-common/dist/src/common/LabeledElement';
 
 /**
  * Input field, optionally with a label, where the user can enter information
@@ -8,7 +8,6 @@ import {LabeledElement} from "@bonitasoft/uid-common/dist/src/common/LabeledElem
  * @element uid-input
  */
 export class UidInput extends LabeledElement {
-
   private name = 'uidInput';
 
   // Common properties below are handled by the div above uid-input:
@@ -75,13 +74,13 @@ export class UidInput extends LabeledElement {
         height: 20px;
         flex-grow: 1;
       }
-      `
-    ];
+    `,
+  ];
 
   render(): TemplateResult {
     return html`
       <div id="${this.id}" class="container ${this.getContainerCssClass()}">
-        ${super.getLabel(this.required, "input")}
+        ${super.getLabel(this.required, 'input')}
         <input
           part="input"
           id="input"
@@ -103,14 +102,18 @@ export class UidInput extends LabeledElement {
   }
 
   private valueChanged(e: any) {
-    const inputElem = super.shadowRoot!.querySelector('input') as HTMLInputElement;
+    const inputElem = super.shadowRoot!.querySelector(
+      'input'
+    ) as HTMLInputElement;
     if (!inputElem.checkValidity()) {
       inputElem.style.borderColor = 'red';
     } else {
       inputElem.style.borderColor = '';
     }
 
-    const { target: {value} } = e;
+    const {
+      target: { value },
+    } = e;
     super.dispatchEvent(new CustomEvent('valueChange', { detail: value }));
   }
 }

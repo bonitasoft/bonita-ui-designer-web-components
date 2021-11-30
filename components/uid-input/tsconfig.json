@@ -9,6 +9,7 @@
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "allowJs": true,
     "importHelpers": true,
     "outDir": "dist",
     "sourceMap": true,

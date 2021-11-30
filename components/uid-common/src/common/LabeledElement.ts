@@ -1,4 +1,4 @@
-import {property} from 'lit/decorators.js'; // eslint-disable-line
+import {property} from 'lit/decorators.js';
 import {css, html} from 'lit';
 import {UidElement} from './UidElement';
 import {Position} from "./PropertiesType";
