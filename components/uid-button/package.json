@@ -18,6 +18,7 @@
     "./uid-button.js": "./dist/src/uid-button.js"
   },
   "scripts": {
+    "init": "cd ../uid-common && npm i && cd - && npm i",
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "tsc && npm run analyze -- --exclude dist",
