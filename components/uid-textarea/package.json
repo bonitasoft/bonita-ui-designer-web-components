@@ -98,7 +98,7 @@
         "error",
         "ignorePackages",
         {
-          "js": "ignorePackages",
+          "js": "never",
           "jsx": "never",
           "ts": "never",
           "tsx": "never"

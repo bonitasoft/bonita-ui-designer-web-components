@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
-import '../src/uid-text.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import '../src/uid-text';
+import { ifDefined } from 'lit/directives/if-defined.js'; // eslint-disable-line
 
 export default {
   title: 'UidText',
