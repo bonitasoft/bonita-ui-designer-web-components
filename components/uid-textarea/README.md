@@ -1,5 +1,5 @@
 # \<uid-textarea>
-![npmVersion](https://img.shields.io/npm/v/uid-textarea?color=blue&style=plastic)
+![npmVersion](https://img.shields.io/npm/v/@bonitasoft/uid-textarea?color=blue&style=plastic)
 
 Simple textarea (with label) web component.
 
@@ -10,14 +10,14 @@ Simple textarea (with label) web component.
 ## Installation
 
 ```bash
-npm i uid-textarea
+npm i @bonitasoft/uid-textarea
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-  import 'uid-textarea/dist/uid-textarea.bundle.min.js';
+  import '@bonitasoft/uid-textarea/dist/uid-textarea.bundle.min.js';
 </script>
 
 <uid-textarea></uid-textarea>

@@ -3,7 +3,7 @@
   "description": "An input with label",
   "homepage": "https://github.com/bonitasoft/web-components/components/uid-input#readme",
   "license": "GPLv2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "files": [

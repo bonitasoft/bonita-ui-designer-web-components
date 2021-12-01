@@ -1,5 +1,5 @@
 # \<uid-title>
-![npmVersion](https://img.shields.io/npm/v/uid-title?color=blue&style=plastic)
+![npmVersion](https://img.shields.io/npm/v/@bonitasoft/uid-title?color=blue&style=plastic)
 
 Simple title web component.
 
