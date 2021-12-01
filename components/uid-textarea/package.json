@@ -1,7 +1,7 @@
 {
   "name": "@bonitasoft/uid-textarea",
   "description": "An textarea input with label",
-  "homepage": "https://github.com/bonitasoft/web-components/components/uid-textarea#readme",
+  "homepage": "https://github.com/bonitasoft/bonita-ui-designer-web-components/tree/main/components/uid-textarea#readme",
   "license": "GPLv2",
   "version": "1.0.0",
   "main": "dist/src/index.js",

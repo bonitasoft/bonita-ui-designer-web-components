@@ -1,7 +1,7 @@
 {
   "name": "@bonitasoft/uid-title",
   "description": "A title component",
-  "homepage": "https://github.com/bonitasoft/web-components/components/uid-title#readme",
+  "homepage": "https://github.com/bonitasoft/bonita-ui-designer-web-components/tree/main/components/uid-title#readme",
   "license": "GPLv2",
   "version": "1.0.2",
   "main": "dist/src/index.js",
