@@ -25,7 +25,7 @@ interface Story<T> {
 
 interface ArgTypes {
   id?: string;
-  disabled?: string;
+  disabled?: boolean;
   alignment?: string;
   label?: string;
   action?: string;
@@ -53,4 +53,10 @@ export const Regular = Template.bind({});
 export const AlignRight = Template.bind({});
 AlignRight.args = {
   alignment: 'right',
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  label: 'Disabled button',
 };
