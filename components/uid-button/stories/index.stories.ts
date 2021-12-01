@@ -12,8 +12,8 @@ export default {
       options: ['left', 'center', 'right'],
       control: 'radio',
     },
-    label: { control: 'text'},
-    action: { control: 'text'},
+    label: { control: 'text' },
+    action: { control: 'text' },
   },
 };
 
@@ -26,8 +26,8 @@ interface Story<T> {
 interface ArgTypes {
   id?: string;
   disabled?: string;
-  alignment?: string,
-  label?: string,
+  alignment?: string;
+  label?: string;
   action?: string;
 }
 
@@ -36,7 +36,7 @@ const Template: Story<ArgTypes> = ({
   disabled,
   alignment,
   label,
-  action
+  action,
 }: ArgTypes) => html`
   <uid-button
     id=${ifDefined(id)}

@@ -1,13 +1,12 @@
-import {html} from 'lit';
-import {property} from 'lit/decorators.js'; // eslint-disable-line
-import {UidElement} from "@bonitasoft/uid-common/dist/src/common/UidElement";
-import {Alignment} from "@bonitasoft/uid-common/dist/src/common/Alignment";
+import { html } from 'lit';
+import { property } from 'lit/decorators.js'; // eslint-disable-line
+import { UidElement } from '@bonitasoft/uid-common/dist/src/common/UidElement'; // eslint-disable-line
+import { Alignment } from '@bonitasoft/uid-common/dist/src/common/Alignment'; // eslint-disable-line
 
 /**
  * Simple button, that trigger an action
  */
 export class UidButton extends UidElement {
-
   @property({ attribute: 'id', type: String, reflect: true })
   id: string = '';
 
@@ -44,8 +43,7 @@ export class UidButton extends UidElement {
 
   private submitAction() {
     if (this.action) {
-      super.dispatchEvent(new CustomEvent('action', {detail: this.action}));
+      super.dispatchEvent(new CustomEvent('action', { detail: this.action }));
     }
   }
-
 }

@@ -1,5 +1,5 @@
 # \<uid-button>
-![npmVersion](https://img.shields.io/npm/v/uid-button?color=blue&style=plastic)
+![npmVersion](https://img.shields.io/npm/v/@bonitasoft/@bonitasoft/uid-button?color=blue&style=plastic)
 
 Simple button web component.
 
@@ -10,14 +10,14 @@ Simple button web component.
 ## Installation
 
 ```bash
-npm i uid-button
+npm i @bonitasoft/uid-button
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-  import 'uid-button/dist/uid-button.bundle.min.js';
+  import '@bonitasoft/uid-button/dist/uid-button.bundle.min.js';
 </script>
 
 <uid-button></uid-button>
