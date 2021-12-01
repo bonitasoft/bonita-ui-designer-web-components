@@ -1,9 +1,3 @@
-export enum Alignment {
-  LEFT = 'left',
-  CENTER = 'center',
-  RIGHT = 'right',
-}
-
 export enum Level {
   LEVEL1 = 'level1',
   LEVEL2 = 'level2',

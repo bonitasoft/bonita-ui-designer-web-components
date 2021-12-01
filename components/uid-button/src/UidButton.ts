@@ -1,7 +1,7 @@
 import {html} from 'lit';
 import {property} from 'lit/decorators.js'; // eslint-disable-line
 import {UidElement} from "@bonitasoft/uid-common/dist/src/common/UidElement";
-import {Alignment} from "./Alignment";
+import {Alignment} from "@bonitasoft/uid-common/dist/src/common/Alignment";
 
 /**
  * Simple button, that trigger an action
@@ -12,7 +12,7 @@ export class UidButton extends UidElement {
   id: string = '';
 
   @property({ attribute: 'alignment', type: String, reflect: true })
-  alignment: Alignment = Alignment.Left;
+  alignment: Alignment = Alignment.LEFT;
 
   @property({ attribute: 'label', type: String, reflect: true })
   label: string = 'Submit';

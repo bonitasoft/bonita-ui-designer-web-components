@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import '../src/uid-textarea';
 import { ifDefined } from 'lit/directives/if-defined.js'; // eslint-disable-line
-import { Position } from '@bonitasoft/uid-common/dist/src/common/PropertiesType';
+import { Position } from '@bonitasoft/uid-common/dist/src/common/Position';
 
 export default {
   title: 'UidTextarea',
