@@ -14,6 +14,7 @@ testStatus() {
 
 buildAndTest() {
     testStatus cd $1
+    testStatus rm -rf node_modules dist coverage custom-elements.json
     testStatus npm ci
     testStatus npm run build
     testStatus npm run test

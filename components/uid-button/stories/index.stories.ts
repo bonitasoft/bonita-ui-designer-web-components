@@ -27,15 +27,13 @@ interface ArgTypes {
   alignment?: string,
   label?: string,
   action?: string;
-  slot?: TemplateResult;
 }
 
 const Template: Story<ArgTypes> = ({
   id,
   alignment,
   label,
-  action,
-  slot
+  action
 }: ArgTypes) => html`
   <uid-button
     id=${ifDefined(id)}
