@@ -1,8 +1,8 @@
 import { css, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js'; // eslint-disable-line
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'; // eslint-disable-line
-import { UidElement } from '@bonitasoft/uid-common/dist/src/common/UidElement';
-import {Alignment} from "@bonitasoft/uid-common/dist/src/common/Alignment";
+import { UidElement } from '@bonitasoft/uid-common/dist/src/common/UidElement'; // eslint-disable-line
+import {Alignment} from "@bonitasoft/uid-common/dist/src/common/Alignment"; // eslint-disable-line
 import {Level} from "./Level";
 
 /**

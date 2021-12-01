@@ -36,11 +36,11 @@
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidInput.json --webComponentBundle dist/uid-input.bundle.min.js --outputDir assets"
   },
   "dependencies": {
-    "lit": "^2.0.0",
-    "@bonitasoft/uid-common": "file:../uid-common"
+    "lit": "^2.0.0"
   },
   "devDependencies": {
     "@bonitasoft/custom-widget-builder": "0.0.13",
+    "@bonitasoft/uid-common": "file:../uid-common",
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "3.0.1",
