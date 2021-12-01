@@ -11,6 +11,9 @@ export class UidButton extends UidElement {
   @property({ attribute: 'id', type: String, reflect: true })
   id: string = '';
 
+  @property({ attribute: 'disabled', type: Boolean, reflect: true })
+  disabled: boolean = false;
+
   @property({ attribute: 'alignment', type: String, reflect: true })
   alignment: Alignment = Alignment.LEFT;
 
@@ -27,6 +30,7 @@ export class UidButton extends UidElement {
           id="${this.id}"
           part="button"
           @click="${this.submitAction}"
+          ?disabled="${this.disabled}"
         >
           ${this.label}
         </button>

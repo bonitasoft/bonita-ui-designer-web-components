@@ -16,6 +16,12 @@ describe('uid-button', () => {
     expect(removeComment(button.textContent)).equals('My label');
   });
 
+  it('Should button be disabled when attribute disabled is set', async () => {
+    uidButton = await fixture(html` <uid-button disabled></uid-button> `);
+    const button = uidButton.shadowRoot.querySelector('button');
+    expect(button.disabled).equals(true);
+  });
+
   it('Should send en event when the button is clicked', async () => {
     let eventReceived = false;
     let value = "";

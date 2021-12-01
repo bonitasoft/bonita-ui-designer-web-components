@@ -28,6 +28,7 @@ npm i uid-button
 | Attribute        | Type      | Default | Possible values    |
 |------------------|-----------|---------|--------------------|
 | `alignment`      | `string`  | "left"  | left center right  |
+| `disabled`       | `string`  | false   |                    |
 | `id`             | `string`  | ""      |                    |
 | `label`          | `string`  | "Submit"|                    |
 | `action`         | `string`  |         |                    |
