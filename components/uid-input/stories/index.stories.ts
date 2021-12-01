@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import '../src/uid-input';
-import { ifDefined } from 'lit/directives/if-defined.js'; // eslint-disable-line
-import { Position } from '@bonitasoft/uid-common/dist/src/common/PropertiesType';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import {Position} from "@bonitasoft/uid-common/dist/src/common/Position"; // eslint-disable-line
 
 export default {
   title: 'UidInput',

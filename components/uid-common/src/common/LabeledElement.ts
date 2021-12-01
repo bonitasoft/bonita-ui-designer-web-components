@@ -1,7 +1,7 @@
 import {property} from 'lit/decorators.js';
 import {css, html} from 'lit';
 import {UidElement} from './UidElement';
-import {Position} from "./PropertiesType";
+import {Position} from "./Position";
 
 export abstract class LabeledElement extends UidElement {
   static readonly LABEL_DEFAULT = 'Default label';

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <title>Hello uid-button!</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="bonita.css">
+  <style>
+
+    body {
+      background: #fafafa;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../dist/src/uid-button';
+
+    render(
+      html`
+        <uid-button id="add" label="Add" action="addToCollection" ></uid-button>
+        <uid-button id="add" label="Submit" action="submit" alignment="right"></uid-button>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
+</body>
+</html>
