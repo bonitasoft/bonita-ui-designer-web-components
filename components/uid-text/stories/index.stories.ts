@@ -70,7 +70,6 @@ const Template: Story<ArgTypes> = ({
     ?allow-html=${allowHtml}
     ?label-hidden=${labelHidden}
   >
-    ${slot}
   </uid-text>
 `;
 
@@ -86,10 +85,3 @@ WithHtml.args = {
   text: 'A text which <br> allow <b>HTML</b>.',
 };
 
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

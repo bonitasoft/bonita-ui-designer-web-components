@@ -4,7 +4,7 @@ import {UidElement} from "@bonitasoft/uid-common/dist/src/common/UidElement";
 import {Alignment} from "./Alignment";
 
 /**
- * Text field, optionally with a label, where the user can display text
+ * Simple button, that trigger an action
  */
 export class UidButton extends UidElement {
 

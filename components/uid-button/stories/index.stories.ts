@@ -43,7 +43,6 @@ const Template: Story<ArgTypes> = ({
     label=${ifDefined(label)}
     action=${ifDefined(action)}
   >
-    ${slot}
   </uid-button>
 `;
 
@@ -52,12 +51,4 @@ export const Regular = Template.bind({});
 export const AlignRight = Template.bind({});
 AlignRight.args = {
   alignment: 'right',
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
 };
