@@ -1,5 +1,5 @@
 {
-  "name": "uid-textarea",
+  "name": "@bonitasoft/uid-textarea",
   "description": "An textarea input with label",
   "homepage": "https://github.com/bonitasoft/web-components/components/uid-textarea#readme",
   "license": "GPLv2",
