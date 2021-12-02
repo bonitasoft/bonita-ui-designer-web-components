@@ -1,7 +1,7 @@
 {
   "name": "@bonitasoft/uid-text",
   "description": "An text with label",
-  "homepage": "https://github.com/bonitasoft/web-components/components/uid-text#readme",
+  "homepage": "https://github.com/bonitasoft/bonita-ui-designer-web-components/tree/main/components/uid-text#readme",
   "license": "GPLv2",
   "version": "1.0.2",
   "main": "dist/src/index.js",
@@ -36,11 +36,11 @@
     "gen-widget-assets": "cwb gen-widget-assets --propertiesFile uidText.json --webComponentBundle dist/uid-text.bundle.min.js --outputDir assets"
   },
   "dependencies": {
-    "lit": "^2.0.0",
-    "@bonitasoft/uid-common": "file:../uid-common"
+    "lit": "^2.0.0"
   },
   "devDependencies": {
     "@bonitasoft/custom-widget-builder": "0.0.13",
+    "@bonitasoft/uid-common": "file:../uid-common",
     "@custom-elements-manifest/analyzer": "^0.4.17",
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "3.0.1",
