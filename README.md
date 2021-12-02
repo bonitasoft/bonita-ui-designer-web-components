@@ -74,7 +74,7 @@ See "Generating the UI Designer properties file" section below.
 
 This will generate a bundle for your web component, test it, generate the UI Designer assets, and publish on npm.
   ```bash
-  $ npm run publish
+  $ npm run release
   ```
 
 ---
