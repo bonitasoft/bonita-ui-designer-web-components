@@ -1,6 +1,6 @@
 {
   "id": "uidButton",
-  "name": "UidButton",
+  "name": "Button",
   "type": "widget",
   "template": "@uidButton.tpl.html",
   "order": "12",
