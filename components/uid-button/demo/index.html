@@ -22,10 +22,15 @@
     render(
       html`
         <uid-button id="add" label="Add" action="addToCollection" ></uid-button>
-        <uid-button id="add" label="Submit" action="submit" alignment="right"></uid-button>
+        <uid-button id="submit" label="Submit" action="submit" alignment="right"></uid-button>
       `,
       document.querySelector('#demo')
     );
+
+    window.addEventListener('action', (event) => {
+      console.log("Action event received  !");
+      console.log(event);
+    });
   </script>
 </body>
 </html>
