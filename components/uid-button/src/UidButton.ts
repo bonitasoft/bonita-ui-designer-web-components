@@ -43,7 +43,7 @@ export class UidButton extends UidElement {
 
   private submitAction() {
     if (this.action) {
-      super.dispatchEvent(new CustomEvent('action', { detail: this.action, bubbles: true}));
+      super.dispatchEvent(new CustomEvent('UidAction', { detail: this.action, bubbles: true}));
     }
   }
 }
