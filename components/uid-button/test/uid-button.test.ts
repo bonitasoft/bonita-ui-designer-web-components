@@ -30,7 +30,7 @@ describe('uid-button', () => {
     uidButton = await fixture(html`
       <uid-button action="myAction"></uid-button>
     `);
-    uidButton.addEventListener('UidAction', (e: { detail: string }) => {
+    uidButton.addEventListener('uid-action', (e: { detail: string }) => {
       eventReceived = true;
       value = e.detail;
     });
