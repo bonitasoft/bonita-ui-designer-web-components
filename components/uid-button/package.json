@@ -3,7 +3,7 @@
   "description": "An button that trigger an action",
   "homepage": "https://github.com/bonitasoft/bonita-ui-designer-web-components/tree/main/components/uid-input#readme",
   "license": "GPLv2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "files": [
