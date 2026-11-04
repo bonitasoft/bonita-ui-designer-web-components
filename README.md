@@ -80,7 +80,7 @@ This will generate a bundle for your web component, test it, generate the UI Des
 ---
 ###  Build a custom widget for the UI Designer 
 
-From your web component, you can now build a custom widget for the Bonitasoft UI Designer :
+From your web component, you can now build a custom widget for the Bonita UI Designer :
 
   ```bash
   $ npm run gen-widget
